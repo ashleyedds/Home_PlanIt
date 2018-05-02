@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(express.static("client/build"));
 
 app.use('/', indexRouter);
-app.use('/evwnts', eventsRouter);
+app.use('/events', eventsRouter);
 
 // Start the API server
 app.listen(PORT, function() {
