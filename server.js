@@ -12,7 +12,7 @@ app.use(function(req, res, next){
 	res.locals.connection = mysql.createConnection({
 		host     : 'localhost',
 		user     : 'root',
-		password : 'pepper12',
+		password : 'akasha234',
 		database : 'testCalendar'
 	});
 	res.locals.connection.connect();
