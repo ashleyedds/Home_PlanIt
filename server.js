@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var eventsRouter = require('./routes/events');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(express.static("client/build"));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/evwnts', eventsRouter);
 
 // Start the API server
 app.listen(PORT, function() {
