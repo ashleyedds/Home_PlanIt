@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+import "react-big-calendar/lib/css/react-big-calendar.css";
 import './App.css';
+
+import Basic from "./components/Basic/basic";
+import ModalExample from "./components/Modal";
+
 
 class App extends Component {
 
@@ -9,7 +14,7 @@ class App extends Component {
   }
     
   componentDidMount() {
-      fetch('/users')
+      fetch('/events')
         .then(res => res.json())
         .then(events => this.setState({ events: events}));
     } 
@@ -17,17 +22,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <h1>Events</h1>
-          {this.state.events.map(event =>
-            <div key={event.id}>{event.title} </div>
-          )}
+        <Basic />
+        <ModalExample />
       </div>
     );
   }
