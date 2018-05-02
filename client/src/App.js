@@ -25,24 +25,5 @@ const App = () => (
 
 )
 
-// state = {
-//   events: []
-// }
-
-// componentDidMount() {
-//     fetch('/events')
-//       .then(res => res.json())
-//       .then(events => this.setState({ events: events}));
-//   } 
-
-// render() {
-//   return (
-//     <div className="App">
-//       <Basic />
-//       <ModalExample />
-//     </div>
-//   );
-// }
-
 
 export default App;

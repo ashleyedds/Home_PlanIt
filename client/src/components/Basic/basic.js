@@ -3,7 +3,6 @@ import BigCalendar from 'react-big-calendar';
 import moment from "moment";
 import './basic.css';
 import axios from "axios";
-//import events from '../../../routes/events';
 
 BigCalendar.momentLocalizer(moment);
 
@@ -16,7 +15,8 @@ class Basic extends React.Component {
   };
 
   componentDidMount() {
-    axios.get("/events/")
+    axios.get("/events")
+      .then("getting")
       .then(res => this.setState({events: res}))
       .catch(err => console.log(err));
   }
