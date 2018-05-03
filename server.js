@@ -1,18 +1,29 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 var indexRouter = require('./routes/index');
-var eventsRouter = require('./routes/events');
+var eventsRouter = require('./routes/api/events');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 const mysql = require("mysql");
+const Sequelize = require("sequelize");
+
+
+// module.exports = new Sequelize("testCalendar", "root", "pepper12", {
+// 	host: "localhost",
+// 	dialect: "mysql",
+// 	pool: {
+// 		max: 5,
+// 		min: 0
+// 	}
+// });
 
 //Database connection
 app.use(function(req, res, next){
 	res.locals.connection = mysql.createConnection({
 		host     : 'localhost',
 		user     : 'root',
-		password : 'akasha234',
+		password : 'pepper12',
 		database : 'testCalendar'
 	});
 	res.locals.connection.connect();

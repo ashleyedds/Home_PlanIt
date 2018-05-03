@@ -10,5 +10,10 @@ const APIKEY =  "&app_id=53df96e7&app_key=6ae1fffea955931009d9dd91fd23c9bb&from=
 export default {
   search: function(query) {
     return axios.get(BASEURL + query + APIKEY);
-  }
-};
+  },
+    
+  getEvents: function(){
+        return axios.get("/api/events");
+    }
+}
+
