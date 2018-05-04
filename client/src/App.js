@@ -7,21 +7,26 @@ import './App.css';
 import Basic from "./components/Basic/basic";
 import ModalExample from "./components/Modal";
 import Recipe from "./components/Recipe/SearchResultContainer"
+import Todo from "./components/List/TodoContainer";
+import X from "./components/Nav/Nav";
 
 
 const App = () => (
 
-  <Router>
-    <div className="App">
-      
-      <Switch>
-        <Route exact path="/" component={Basic} />
-        <Route exact path="/events" component={Basic} />
-        <Route exact path="/recipes" component={Recipe} />
-        <Route component={Basic} />
-      </Switch>
-    </div>
-  </Router>
+  <div className="App" style={{display: 'flex',alignItems: 'stretch'}}>
+    <X />
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/" component={Basic} />
+          <Route exact path="/events" component={Basic} />
+          <Route exact path="/recipes" component={Recipe} />
+          <Route exact path="/lists" component={Todo} />
+          <Route component={Basic} />
+        </Switch>
+      </div>
+    </Router>
+  </div>
 
 )
 
