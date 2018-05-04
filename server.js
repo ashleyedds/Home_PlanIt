@@ -1,47 +1,26 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-var indexRouter = require('./routes/index');
-var eventsRouter = require('./routes/api/events');
-
-const app = express();
-const PORT = process.env.PORT || 3001;
-const mysql = require("mysql");
-const Sequelize = require("sequelize");
+var express = require("express");
+var bodyParser = require("body-parser");
 
 
-// module.exports = new Sequelize("testCalendar", "root", "pepper12", {
-// 	host: "localhost",
-// 	dialect: "mysql",
-// 	pool: {
-// 		max: 5,
-// 		min: 0
-// 	}
-// });
+var app = express();
+var PORT = process.env.PORT || 3001;
 
-//Database connection
-app.use(function(req, res, next){
-	res.locals.connection = mysql.createConnection({
-		host     : 'localhost',
-		user     : 'root',
-		password : 'pepper12',
-		database : 'testCalendar'
-	});
-	res.locals.connection.connect();
-	next();
-});
+var db = require("./models");
+var routes = require("./controllers/calendarController");
+
 
 // Configure body parser for AJAX requests
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Serve up static assets
 app.use(express.static("client/build"));
 
-app.use('/', indexRouter);
-app.use('/events', eventsRouter);
+app.use(routes);
+
 
 // Start the API server
-app.listen(PORT, function() {
-    console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+db.sequelize.sync({ force: false }).then(function() {
+    app.listen(PORT, function() {
+        console.log("App listening on PORT " + PORT);
+    });
 });
-
-module.exports = app;
