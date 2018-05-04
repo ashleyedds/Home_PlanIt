@@ -1,11 +1,25 @@
-const db = require("../models/calendar");
+var db = require("../models");
+const router = require("express").Router();
 
-module.exports = {
-    findAll: (req, res) => {
-        db.Event
-            .find(req.query)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-    }
+
+// module.exports = function(app) {
+//     app.get("/api/events", function(req, res) {
+//         db.Event.findAll({})
+//         .then(function(results) {
+//             res.json(results)
+//             console.log(results)
+//         });
+//     });
+// }
+
+module.exports = function(app){
+    router.route("/api/events")
+    .get(function(req, res) {
+        db.Event.findAll({})
+    .then(function(results){
+        res.json(results)
+    
+    });
+    });
 }
     

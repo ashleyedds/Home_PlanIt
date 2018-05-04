@@ -1,14 +1,10 @@
-const Sequelize = require("sequelize");
-const connection = require("../server");
-
-const Event = connection.define("event", {
-    title: Sequelize.STRING,
-    allDay: Sequelize.BOOLEAN,
-    start: Sequelize.DATE,
-    end: Sequelize.DATE,
-    description: Sequelize.STRING
-});
-
-Event.sync();
-
-module.exports = Event;
+module.exports = function(sequelize, DataTypes) {
+    const Event = sequelize.define("Event", {
+        title: DataTypes.STRING,
+        // allDay: DataTypes.BOOLEAN,
+        // start: DataTypes.DATE,
+        // end: DataTypes.DATE,
+        // description: DataTypes.STRING
+    });
+return Event;
+}
