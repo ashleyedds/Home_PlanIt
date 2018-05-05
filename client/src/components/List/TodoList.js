@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TodoItems from "./TodoItems";
 import "./TodoList.css";
+import API from "../../utils/listAPI";
 
 class TodoList extends Component {
     constructor(props) {
@@ -15,21 +16,55 @@ class TodoList extends Component {
     addItem(e) {
         if (this._inputElement.value !== "") {
             var newItem = {
-                text: this._inputElement.value,
+                title: this._inputElement.value,
                 key: Date.now()
             };
 
             this.setState((prevState) => {
+                console.log(prevState);
                 return {
                     items: prevState.items.concat(newItem)
+                    
                 };
             });
-
+            this.handleFormSubmit(newItem)
             this._inputElement.value = "";
         }
-        console.log(this.state.items);
+        
+        // this.handleFormSubmit();
         e.preventDefault();
     }
+
+    componentDidMount() {
+        this.loadList();
+      }
+    
+      // Loads all books  and sets them to this.state.books
+      loadList() {
+        API.getList()
+          .then(res => this.setState({items: res.data}))
+            
+          .catch(err => console.log(err));
+      };
+
+
+    
+      
+
+    handleFormSubmit(item) {
+
+        // event.preventDefault();
+        
+          API.saveList({
+            title: item.title,
+            key: item.key,
+            MemberId: 1
+            
+          })
+            .then(res => console.log("something"))//this.loadBooks())
+            .catch(err => console.log(err));
+        console.log(this.state.items)
+      };
 
     deleteItem(key) {
         var filteredItems = this.state.items.filter(function (item) {

@@ -1,5 +1,5 @@
-var db = require("../models");
-const router = require("express").Router();
+// var db = require("../models");
+// const router = require("express").Router();
 
 
 // module.exports = function(app) {
@@ -12,14 +12,14 @@ const router = require("express").Router();
 //     });
 // }
 
-module.exports = function(app){
-    router.route("/api/events")
-    .get(function(req, res) {
-        db.Event.findAll({})
-    .then(function(results){
-        res.json(results)
+// module.exports = function(app){
+//     router.route("/api/events")
+//     .get(function(req, res) {
+//         db.Event.findAll({})
+//     .then(function(results){
+//         res.json(results)
     
-    });
-    });
-}
+//     });
+//     });
+// }
     
