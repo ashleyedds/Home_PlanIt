@@ -2,7 +2,7 @@ import React from 'react';
 import {} from 'react-dom';
 
 import styled from 'styled-components';
-
+import { Link } from "react-router-dom";
 import SideNav, { Nav, NavIcon, NavText } from 'react-sidenav';
 import SvgIcon from 'react-icons-kit';
 import {ic_event_note} from 'react-icons-kit/md/ic_event_note'

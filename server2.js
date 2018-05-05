@@ -15,7 +15,8 @@ app.use(bodyParser.json());
 // Serve up static assets
 app.use(express.static("client/build"));
 
-app.use(routes);
+// app.use(routes);
+require("./controllers/listController")(app);
 
 
 // Start the API server
