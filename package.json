@@ -31,11 +31,13 @@
     "reactstrap": "^6.0.0"
   },
   "scripts": {
-		"start": "export NODE_ENV=\"production\" && node server/server.js",
+    "start": "export NODE_ENV=\"production\" && node server/server.js",
+    "server": "node server/server.js",
+    "client": "node scripts/start-client.js",
 		"build": "react-scripts build",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject",
-		"dev": "concurrently \"react-scripts start\" \"nodemon server/server.js\"",
+		"dev": "concurrently \"npm run client\" \"nodemon server/server.js\"",
 		"prod": "export NODE_ENV=\"production\" && nodemon server/server.js"
   },
   "proxy": "http://localhost:8080"
