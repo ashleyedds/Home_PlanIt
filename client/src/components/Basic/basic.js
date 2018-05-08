@@ -2,7 +2,7 @@ import React from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from "moment";
 import './basic.css';
-import API from "../../utils/API";
+import API from "../../utils/eventAPI";
 
 BigCalendar.momentLocalizer(moment);
 
@@ -17,7 +17,7 @@ class Basic extends React.Component {
   componentDidMount() {
     API.getEvents()
     .then(res =>
-        this.setState({ events: res.data }))
+        console.log(results))
     .catch(err => console.log(err));
   }
 

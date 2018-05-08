@@ -4,7 +4,7 @@ import App from './App'
 import Recipe from "./components/Recipe/SearchResultContainer"
 import X from "./components/Nav/Nav";
 import './index.css';
-import Basic from "./components/Basic/basic";
+import Basic from "./pages/Events"
 import Todo from "./components/List/TodoContainer";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'

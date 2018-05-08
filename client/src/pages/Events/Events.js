@@ -1,8 +1,8 @@
 import React from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from "moment";
-import './basic.css';
-import API from "../../utils/API";
+// import './basic.css';
+import API from "../../utils/eventAPI";
 
 BigCalendar.momentLocalizer(moment);
 
@@ -10,20 +10,20 @@ let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
 
 class Basic extends React.Component {
 
-  state = {
+    state = {
     events: []
-  };
+    };
 
-  componentDidMount() {
+    componentDidMount() {
     API.getEvents()
     .then(res =>
         this.setState({ events: res.data }))
     .catch(err => console.log(err));
-  }
+    }
 
-  render() {
+    render() {
     return (
-      <BigCalendar
+        <BigCalendar
         events={this.state.events}
         popup events={this.state.events}
         views={allViews}
@@ -39,9 +39,9 @@ class Basic extends React.Component {
                 `\naction: ${slotInfo.action}`
             )
             }
-      />
+        />
     )
-  }
+    }
 };
 
 export default Basic
