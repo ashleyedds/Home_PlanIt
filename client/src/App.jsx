@@ -6,6 +6,7 @@ import LoginForm from './components/Login/LoginForm'
 import SignupForm from './components/SignupForm'
 import Header from './components/Header'
 import Home from './components/Home'
+import Basic from "./pages/Events"
 
 const DisplayLinks = props => {
 	if (props.loggedIn) {
@@ -130,10 +131,11 @@ class App extends Component {
 						/>}
 				/>
 				<Route exact path="/signup" component={SignupForm} />
+				<Route exact path="/events" component={Basic} />
 				{/* <LoginForm _login={this._login} /> */}
 			</div>
 		)
 	}
 }
 
-export default App
+export default App;
