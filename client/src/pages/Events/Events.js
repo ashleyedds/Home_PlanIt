@@ -9,17 +9,22 @@ BigCalendar.momentLocalizer(moment);
 let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
 
 class Basic extends React.Component {
-
     state = {
-    events: []
+        events: []
     };
 
     componentDidMount() {
-    API.getEvents()
-    .then(res =>
-        this.setState({ events: res.data }))
-    .catch(err => console.log(err));
+        this.searchEvents();
     }
+
+    searchEvents = () => {
+        API.getEvents()
+        .then(res => {
+            this.setState({ events: res.data });
+            console.log(this.state.events)
+        })
+        .catch(err => console.log(err));
+    };
 
     render() {
     return (
