@@ -4,8 +4,16 @@ const Schema = mongoose.Schema;
 const calendarSchema = new Schema({
     title: { type: String, required: true},
     allDay: { type: Boolean, required: false},
-    start: { type: Date, required: true},
-    end: { type: Date, required: true},
+    start: {
+        year: {type: Number, required: true},
+        month: {type: Number, required: true },
+        date: {type: Number, required: true}
+    },
+    end: {
+        year: {type: Number, required: true},
+        month: {type: Number, required: true },
+        date: {type: Number, required: true}
+    },
     description: { type: String, required: false}
 });
 
