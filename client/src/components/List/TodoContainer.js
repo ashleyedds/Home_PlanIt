@@ -19,6 +19,12 @@ class TodoContainer extends Component {
     
     const CardBody = styled.div`
 			background-color: #eceeef;
+    `;
+    const Jumbotron = styled.div`
+      margin: 2em;
+      padding: 2em;
+      background-color: #eceeef;
+      border-radius: 5px;
     `
 
     return (
@@ -32,7 +38,6 @@ class TodoContainer extends Component {
             <p className="lead">
               <Button color="primary">Add a List</Button>
             </p>
-            <hr className="my-2" />
           </Jumbotron>
         </div>
         <CardColumns>

@@ -2,7 +2,7 @@
     padding: .25em;
     font-size: 1em;
     border: 2px solid #FFF;
-    width: 12em;
+    width: 17em;
     margin: 0px;
     margin-top: 1em;
     margin-bottom: 1em;
@@ -24,7 +24,7 @@
   .todoListMain .theList {
     list-style: none;
     padding-left: 0;
-    width: 15em;
+    width: 17em;
   } 
   .todoListMain .theList li {
     color: #333;

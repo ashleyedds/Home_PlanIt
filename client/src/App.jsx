@@ -5,7 +5,6 @@ import './App.css'
 import LoginForm from './components/Login/LoginForm'
 import SignupForm from './components/SignupForm'
 import Header from './components/Header'
-import Home from './components/Home'
 import { Container, Row, Col } from 'reactstrap';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 import { Jumbotron, Button } from 'reactstrap';
@@ -20,35 +19,34 @@ const DisplayLinks = props => {
 	const NavLink = styled.a`
 		border-radius: 3px;
 		padding: 0.5em 1em;
-		margin: 0 1em;
+		margin: 0 2em;
 		background-color: #2c3e50;
 		color: white;
 		border: 2px solid #2c3e50;
 	`
 	if (props.loggedIn) {
 		return (
-			<Nav>
-				<NavItem>
-					<NavLink href="/">Home</NavLink>
-				</NavItem>
-				<NavItem>
-					<NavLink href="#" onClick={props._logout}>Logout </NavLink>
-				</NavItem>
-			</Nav>
+			<Container>
+				<Nav>
+					<NavItem>
+						<NavLink href="#" onClick={props._logout}>Logout </NavLink>
+					</NavItem>
+				</Nav>
+			</Container>
+
 		)
 	} else {
 		return (
-			<Nav>
-				<NavItem>
-					<NavLink href="/">Home</NavLink>
-				</NavItem>
-				<NavItem>
-					<NavLink href="/login">Login </NavLink>
-				</NavItem>
-				<NavItem>
-					<NavLink href="/signup">Signup</NavLink>
-				</NavItem>
-			</Nav>
+			<Container>
+				<Nav>
+					<NavItem>
+						<NavLink href="/login">Login </NavLink>
+					</NavItem>
+					<NavItem>
+						<NavLink href="/signup">Signup</NavLink>
+					</NavItem>
+				</Nav>
+			</Container>
 		)
 	}
 }
@@ -116,53 +114,34 @@ class App extends Component {
 
 
 	render() {
-		const CardBody = styled.a`
+		const Container = styled.div`
 			background-color: #eceeef;
 		`
 
 		return (
 			<Container>
 				<Jumbotron>
-					<h1 className="display-3">Member Hub</h1>
-					<p className="lead">Manage your household members, or add to the fun!</p>
-					<p className="lead">
-						<Button color="primary">Add a Member</Button>
-					</p>
-					<hr className="my-2" />
+					<Row>
+						<Col lg={{ offset: 4 }}>
+							<DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<Route exact path="/" render={null} />
+							<Route
+								exact
+								path="/login"
+								render={() =>
+									<LoginForm
+										_login={this._login}
+									/>}
+							/>
+							<Route exact path="/signup" component={SignupForm} />
+						</Col>
+					</Row>
 				</Jumbotron>
-				<div>
-					<Card>
-						<CardBody>
-							<Row>
-								<Col>
-									<Header user={this.state.user} />
-								</Col>
-							</Row>
-							<Row>
-								<Col lg={{ offset: 4 }}>
-									<DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
-								</Col>
-							</Row>
-							<Row>
-								<Col>
-									<Route exact path="/" render={() => <Home user={this.state.user} />} />
-									<Route
-										exact
-										path="/login"
-										render={() =>
-											<LoginForm
-												_login={this._login}
-											/>}
-									/>
-									<Route exact path="/signup" component={SignupForm} />
-								</Col>
-							</Row>
-						</CardBody>
-					</Card>
-				</div>
-
 			</Container>
-
 		)
 	}
 }
