@@ -1,8 +1,10 @@
 import React from 'react';
 import BigCalendar from 'react-big-calendar';
+import EventModal from "./Modal";
 import moment from "moment";
-// import './basic.css';
 import API from "../../utils/eventAPI";
+import "./Events.css";
+import { Container } from 'reactstrap'
 
 BigCalendar.momentLocalizer(moment);
 
@@ -10,24 +12,31 @@ let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
 
 class Basic extends React.Component {
     state = {
-        events: []
+        events: [],
+        dbPull: []
     };
 
     componentDidMount() {
-        this.searchEvents();
+
+        this.searchDb();
+        
     }
 
-    searchEvents = () => {
+    searchDb = () => {
         API.getEvents()
         .then(res => {
+            for(let i = 0; i < res.data.length; i++){
+                res.data[i].start = new Date(res.data[i].start)
+                res.data[i].end = new Date(res.data[i].end)
+            }
             this.setState({ events: res.data });
-            console.log(this.state.events)
         })
         .catch(err => console.log(err));
     };
 
     render() {
     return (
+        <Container>
         <BigCalendar
         events={this.state.events}
         popup events={this.state.events}
@@ -45,6 +54,8 @@ class Basic extends React.Component {
             )
             }
         />
+        <EventModal />
+        </Container>
     )
     }
 };
