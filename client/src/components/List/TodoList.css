@@ -1,13 +1,16 @@
 .todoListMain .header input {
-    padding: 10px;
-    font-size: 16px;
+    padding: .25em;
+    font-size: 1em;
     border: 2px solid #FFF;
-    width: 165px;
+    width: 12em;
+    margin: 0px;
+    margin-top: 1em;
+    margin-bottom: 1em;
   }
   .todoListMain .header button {
-    padding: 10px;
-    font-size: 16px;
-    margin: 10px;
+    padding: 5px;
+    font-size: 1em;
+    margin-left: .5em;
     margin-right: 0px;
     background-color: #0066FF;
     color: #FFF;
@@ -21,13 +24,13 @@
   .todoListMain .theList {
     list-style: none;
     padding-left: 0;
-    width: 250px;
+    width: 15em;
   } 
   .todoListMain .theList li {
     color: #333;
     background-color: rgba(255,255,255,.5);
-    padding: 15px;
-    margin-bottom: 15px;
+    padding: 5px;
+    margin-bottom: 5px;
     border-radius: 5px;
     list-style: none;
     transition: background-color .2s ease-out;

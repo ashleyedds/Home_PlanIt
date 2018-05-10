@@ -6,47 +6,49 @@ import LoginForm from './components/Login/LoginForm'
 import SignupForm from './components/SignupForm'
 import Header from './components/Header'
 import Home from './components/Home'
-import Basic from "./pages/Events"
+import { Container, Row, Col } from 'reactstrap';
+import { Nav, NavItem, NavLink } from 'reactstrap';
+import { Jumbotron, Button } from 'reactstrap';
+import {
+	Card, CardImg, CardText, CardBody,
+	CardTitle, CardSubtitle
+} from 'reactstrap';
+import styled, { css } from 'styled-components';
+
 
 const DisplayLinks = props => {
+	const NavLink = styled.a`
+		border-radius: 3px;
+		padding: 0.5em 1em;
+		margin: 0 1em;
+		background-color: #2c3e50;
+		color: white;
+		border: 2px solid #2c3e50;
+	`
 	if (props.loggedIn) {
 		return (
-			<nav className="navbar">
-				<ul className="nav">
-					<li className="nav-item">
-						<Link to="/" className="nav-link">
-							Home
-						</Link>
-					</li>
-					<li>
-						<Link to="#" className="nav-link" onClick={props._logout}>
-							Logout
-						</Link>
-					</li>
-				</ul>
-			</nav>
+			<Nav>
+				<NavItem>
+					<NavLink href="/">Home</NavLink>
+				</NavItem>
+				<NavItem>
+					<NavLink href="#" onClick={props._logout}>Logout </NavLink>
+				</NavItem>
+			</Nav>
 		)
 	} else {
 		return (
-			<nav className="navbar">
-				<ul className="nav">
-					<li className="nav-item">
-						<Link to="/" className="nav-link">
-							Home
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to="/login" className="nav-link">
-							login
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to="/signup" className="nav-link">
-							sign up
-						</Link>
-					</li>
-				</ul>
-			</nav>
+			<Nav>
+				<NavItem>
+					<NavLink href="/">Home</NavLink>
+				</NavItem>
+				<NavItem>
+					<NavLink href="/login">Login </NavLink>
+				</NavItem>
+				<NavItem>
+					<NavLink href="/signup">Signup</NavLink>
+				</NavItem>
+			</Nav>
 		)
 	}
 }
@@ -111,31 +113,58 @@ class App extends Component {
 			})
 	}
 
+
+
 	render() {
+		const CardBody = styled.a`
+			background-color: #eceeef;
+		`
+
 		return (
-			<div className="App">
-				<h1>This is the main App component</h1>
-				<Header user={this.state.user} />
-				{/* LINKS to our different 'pages' */}
-				<DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
-				{/*  ROUTES */}
-				{/* <Route exact path="/" component={Home} /> */}
-				<Route exact path="/" render={() => <Home user={this.state.user} />} />
-				<Route
-					exact
-					path="/login"
-					render={() =>
-						<LoginForm
-							_login={this._login}
-							// _googleSignin={this._googleSignin}
-						/>}
-				/>
-				<Route exact path="/signup" component={SignupForm} />
-				<Route exact path="/events" component={Basic} />
-				{/* <LoginForm _login={this._login} /> */}
-			</div>
+			<Container>
+				<Jumbotron>
+					<h1 className="display-3">Member Hub</h1>
+					<p className="lead">Manage your household members, or add to the fun!</p>
+					<p className="lead">
+						<Button color="primary">Add a Member</Button>
+					</p>
+					<hr className="my-2" />
+				</Jumbotron>
+				<div>
+					<Card>
+						<CardBody>
+							<Row>
+								<Col>
+									<Header user={this.state.user} />
+								</Col>
+							</Row>
+							<Row>
+								<Col lg={{ offset: 4 }}>
+									<DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
+								</Col>
+							</Row>
+							<Row>
+								<Col>
+									<Route exact path="/" render={() => <Home user={this.state.user} />} />
+									<Route
+										exact
+										path="/login"
+										render={() =>
+											<LoginForm
+												_login={this._login}
+											/>}
+									/>
+									<Route exact path="/signup" component={SignupForm} />
+								</Col>
+							</Row>
+						</CardBody>
+					</Card>
+				</div>
+
+			</Container>
+
 		)
 	}
 }
 
-export default App;
+export default App

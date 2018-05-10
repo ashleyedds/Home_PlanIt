@@ -40,7 +40,7 @@ const BasicSideNav = () =>
         <Title> Home Planit </Title>
         <Nav id="events">
             <NavIcon><Icon20 icon={ic_event_note} /></NavIcon>
-            <NavText> Events </NavText>
+            <NavText href="/events"> Events </NavText>
         </Nav>
         <Nav id="lists">
             <NavIcon><Icon20 icon={ic_format_list_bulleted} /></NavIcon>

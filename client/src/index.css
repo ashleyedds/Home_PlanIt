@@ -6,12 +6,14 @@ body {
 
 .App {
   height: 500px;
+  
 }
 
 body {
   padding: 0px;
   background-color: #66CCFF;
   font-family: sans-serif;
+  
 }
 #container {
   display: flex;

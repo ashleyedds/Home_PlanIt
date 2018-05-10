@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import "./SignupForm.css";
+import { Container, Row, Col } from 'reactstrap';
 
 class SignupForm extends Component {
 	constructor() {
@@ -44,33 +46,43 @@ class SignupForm extends Component {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		}
 		return (
-			<div className="SignupForm">
-				<h1>Signup form</h1>
-				<label htmlFor="username">Username: </label>
-				<input
-					type="text"
-					name="username"
-					value={this.state.username}
-					onChange={this.handleChange}
-				/>
-				<label htmlFor="password">Password: </label>
-				<input
-					type="password"
-					name="password"
-					value={this.state.password}
-					onChange={this.handleChange}
-				/>
-				<label htmlFor="confirmPassword">Confirm Password: </label>
-				<input
-					type="password"
-					name="confirmPassword"
-					value={this.state.confirmPassword}
-					onChange={this.handleChange}
-				/>
-				<button onClick={this.handleSubmit}>Sign up</button>
-			</div>
-		)
-	}
-}
+			<Container>
+				<Row>
+					<Col lg={{ size: 5, offset: 3 }}>
+							<input
+								type="text"
+								name="username"
+								placeholder="Username"
+								value={this.state.username}
+								onChange={this.handleChange}
+							/>
+							<input
+								type="password"
+								name="password"
+								placeholder="Password"
+								value={this.state.password}
+								onChange={this.handleChange}
+							/>
+							<input
+								type="password"
+								name="confirmPassword"
+								placeholder="Confirm Password"
+								value={this.state.confirmPassword}
+								onChange={this.handleChange}
+							/>
+					</Col>
+				</Row>
+				<Row>
+					<Col lg={{ size: 1, offset: 5 }}>
+						<button onClick={this.handleSubmit}>Create Account</button>
+					</Col>
+				</Row>
+			</Container>
 
-export default SignupForm
+
+
+					)
+				}
+			}
+			
+			export default SignupForm
