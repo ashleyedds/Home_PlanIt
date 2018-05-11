@@ -1,21 +1,31 @@
 import React from "react";
 
+import { Container, Row, Col } from 'reactstrap';
+import { Nav, NavItem, NavLink } from 'reactstrap';
+import { Jumbotron, Button } from 'reactstrap';
+import {
+	Card, CardImg, CardText, CardBody,
+	CardTitle, CardSubtitle, CardGroup
+} from 'reactstrap';
+import styled, { css } from 'styled-components';
+
 const ResultList = props => (
-  <ul className="list-group">
-    {props.results.map(result => (
-      <li className="list-group-item" key={result.id}>
-        <img
-          alt={result.title}
-          className="img-fluid"
-          src={result.recipe.image}
-        />
-        <a href={result.recipe.url}><h2>{result.recipe.label}</h2></a>
-        {result.recipe.ingredients.map(ingredient => (
-          <p>{ingredient.text}</p>
-        ))}
-      </li>
-    ))}
-  </ul>
+  <div className="list-group">
+    <Row>
+      {props.results.map(result => (
+          <Col sm="4">
+            <Card>
+              <CardImg top width="100%" className="img-fluid" src={result.recipe.image} alt={result.title} />
+              <CardBody>
+                <CardTitle><h2>{result.recipe.label}</h2></CardTitle>
+                <CardText>{result.recipe.ingredients.map(ingredient => (<p>{ingredient.text}</p>))}</CardText>
+                <Button><a href={result.recipe.url}>Go to Recipe</a></Button>
+              </CardBody>
+            </Card>
+          </Col>
+      ))}
+    </Row>
+  </div>
 );
 
 export default ResultList;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-// import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_disabled_web.png'
-// import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_normal_web.png'
+import { Container, Row, Col } from 'reactstrap';
+import "./LoginForm.css";
 
 class LoginForm extends Component {
 	constructor() {
@@ -36,27 +36,37 @@ class LoginForm extends Component {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		} else {
 			return (
-				<div className="LoginForm">
-					<h1>Login form</h1>
-					<form>
-						<label htmlFor="username">Username: </label>
-						<input
-							type="text"
-							name="username"
-							value={this.state.username}
-							onChange={this.handleChange}
-						/>
-						<label htmlFor="password">Password: </label>
-						<input
-							type="password"
-							name="password"
-							value={this.state.password}
-							onChange={this.handleChange}
-						/>
-						<button onClick={this.handleSubmit}>Login</button>
-					</form>
-					
-				</div>
+				<Container>
+					<Row>
+						<Col lg={{ size: 5, offset: 3 }}>
+							<input
+								type="text"
+								name="username"
+								placeholder="Username"
+								value={this.state.username}
+								onChange={this.handleChange}
+							/>
+							<input
+								type="password"
+								name="password"
+								placeholder="Password"
+								value={this.state.password}
+								onChange={this.handleChange}
+							/>
+						</Col>
+					</Row>
+					<Row>
+						<Col lg={{ size: 4, offset: 5 }}>
+							<button onClick={this.handleSubmit}>Login</button>
+						</Col>
+					</Row>
+				</Container>
+
+
+
+
+
+
 			)
 		}
 	}

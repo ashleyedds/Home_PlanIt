@@ -3,6 +3,14 @@ import SearchForm from "./SearchForm";
 import ResultList from "./ResultList";
 import API from "../../utils/API";
 
+import { Container, Row, Col } from 'reactstrap';
+import { Jumbotron, Button } from 'reactstrap';
+import {
+	Card, CardImg, CardText, CardBody,
+	CardTitle, CardSubtitle
+} from 'reactstrap';
+import styled, { css } from 'styled-components';
+
 class SearchResultContainer extends Component {
   state = {
     search: "",
@@ -37,15 +45,18 @@ class SearchResultContainer extends Component {
   };
 
   render() {
+
     return (
-      <div>
-        <SearchForm
-          search={this.state.search}
-          handleFormSubmit={this.handleFormSubmit}
-          handleInputChange={this.handleInputChange}
-        />
-        <ResultList results={this.state.results} />
-      </div>
+      <Container>
+        <Jumbotron>
+          <SearchForm
+            search={this.state.search}
+            handleFormSubmit={this.handleFormSubmit}
+            handleInputChange={this.handleInputChange}
+          />
+          <ResultList results={this.state.results} />
+        </Jumbotron>
+      </Container>
     );
   }
 }
