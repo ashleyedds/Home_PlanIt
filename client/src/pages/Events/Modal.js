@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
+
 class EventModal extends React.Component {
     constructor(props) {
     super(props);
@@ -30,20 +31,24 @@ class EventModal extends React.Component {
                 <Input type="text" name="eventTitle" id="eventTitle" placeholder="What are you up to?" />
             </FormGroup> 
             <FormGroup>
-                <Label for="eventDesc">Event Description</Label>
+                <Label for="eventDesc">Event Description (optional)</Label>
                 <Input type="text" name="eventDesc" id="eventDesc" placeholder="Tell me more." />
             </FormGroup> 
             <FormGroup>
-                <Label for="date">Date</Label>
-                <Input type="date" name="date" id="date" placeholder="date placeholder" />
+                <Label for="date">Start Date (YYYY-MM-DD)</Label>
+                <Input type="text" name="date" id="date" />
             </FormGroup>
             <FormGroup>
                 <Label for="startTime">Start Time</Label>
-                <Input type="time" name="startTime" id="startTime" placeholder="time placeholder" />
+                <Input type="text" name="startTime" id="startTime" />
+            </FormGroup>
+            <FormGroup>
+                <Label for="date">End Date (YYYY-MM-DD)</Label>
+                <Input type="text" name="date" id="date" />
             </FormGroup>
             <FormGroup>
                 <Label for="endTime">End Time</Label>
-                <Input type="time" name="endTime" id="endTime" placeholder="time placeholder" />
+                <Input type="text" name="endTime" id="endTime" />
             </FormGroup>
             </Form>
             </ModalBody>

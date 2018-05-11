@@ -5,6 +5,7 @@ import moment from "moment";
 import API from "../../utils/eventAPI";
 import "./Events.css";
 import { Container } from 'reactstrap'
+import styled, { css } from 'styled-components';
 
 BigCalendar.momentLocalizer(moment);
 
@@ -12,8 +13,7 @@ let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
 
 class Basic extends React.Component {
     state = {
-        events: [],
-        dbPull: []
+        events: []
     };
 
     componentDidMount() {
@@ -35,7 +35,9 @@ class Basic extends React.Component {
     };
 
     render() {
+
     return (
+        
         <Container>
         <BigCalendar
         events={this.state.events}
