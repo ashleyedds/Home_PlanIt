@@ -3,7 +3,8 @@ const calendarController = require("../../controllers/calendarController");
 const passport = require("passport");
 
 router.route("/")
-    .get(calendarController.findAll);
+    .get(calendarController.findAll)
+    .post(calendarController.create);
 
 
 module.exports = router;
