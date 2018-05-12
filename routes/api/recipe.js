@@ -12,7 +12,8 @@ router.route("/:user")
 
 router
     .route("/:id")
-    .get(recipeController.findById);
+    .get(recipeController.findById)
+    .delete(recipeController.remove);
 
 
 module.exports = router;
