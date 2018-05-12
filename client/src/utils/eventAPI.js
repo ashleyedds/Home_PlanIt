@@ -10,7 +10,15 @@ export default {
     },
 
     deleteEvent: function(id) {
-        return axios.delete("/api/events/" + id);
+        return axios.delete("/api/events/" + id)
+        .then(this.getEvents())
+        .then(window.location.reload())
+    },
+
+    updateEvent: function(id, eventData) {
+        return axios.put("/api/events/" + id, eventData)
+        .then(this.getEvents())
+        .then(window.location.reload())
     },
 
     saveEvent: function(eventData) {
