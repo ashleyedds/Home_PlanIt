@@ -2,9 +2,17 @@ const router = require("express").Router();
 const recipeController = require("../../controllers/recipeController");
 const passport = require("passport");
 
+
 router.route("/")
     .get(recipeController.findAll)
-    .post(recipeController.create)
+    .post(recipeController.create);
+router.route("/:user")
+    .get(recipeController.findByUser);
+    // .post(recipeController.create);
+
+router
+    .route("/:id")
+    .get(recipeController.findById);
 
 
 module.exports = router;
