@@ -27,7 +27,9 @@ class SearchResultContainer extends Component {
           user: response.data.user
         })
         console.log(this.state)
+        this.updateSavedRecipes();
       }
+
     })
   }
 
@@ -65,10 +67,18 @@ class SearchResultContainer extends Component {
   }
 
   updateSavedRecipes = () => {
-    axios.get('./api/user').then(res => {
-      this.setState({saved: res.data.saved})
+    console.log("Saved Update ========" + this.state.user._id)
+    axios.get('/api/recipes/' + this.state.user._id).then(res => {
+      this.setState({saved: res.data})
+      console.log(this.state.saved )
     })
   }
+
+  deleteRecipe = id => {
+    axios.delete('/api/recipes/' + id)
+      .then(res => this.updateSavedRecipes())
+      .catch(err => console.log(err));
+  };
 
   render() {
 
@@ -84,7 +94,8 @@ class SearchResultContainer extends Component {
           results={this.state.results}
           handleRecipeSave={this.handleRecipeSave}/>
           <SavedList
-          saved={this.state.saved}/>
+          saved={this.state.saved}
+          deleteRecipe={this.deleteRecipe}/>
         </Jumbotron>
       </Container>
     );
