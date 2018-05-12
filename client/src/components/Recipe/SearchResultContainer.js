@@ -2,15 +2,9 @@ import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import ResultList from "./ResultList";
 import API from "../../utils/API";
+import { Container, Jumbotron } from 'reactstrap';
 import axios from 'axios'
 
-import { Container, Row, Col } from 'reactstrap';
-import { Jumbotron, Button } from 'reactstrap';
-import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle
-} from 'reactstrap';
-import styled, { css } from 'styled-components';
 
 class SearchResultContainer extends Component {
   state = {

@@ -1,15 +1,6 @@
-import React, { Component } from "react";
-
-import { Container, Row, Col } from 'reactstrap';
-import { Nav, NavItem, NavLink } from 'reactstrap';
-import { Jumbotron, Button } from 'reactstrap';
-import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, CardGroup
-} from 'reactstrap';
-import styled, { css } from 'styled-components';
+import React from "react";
+import { Row, Col, Button, Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import SaveBtn from './../SaveBtn';
-
 
 
 const ResultList = props => (

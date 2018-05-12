@@ -4,15 +4,10 @@ import { Route, Link } from 'react-router-dom'
 import './App.css'
 import LoginForm from './components/Login/LoginForm'
 import SignupForm from './components/SignupForm'
-import Header from './components/Header'
 import { Container, Row, Col } from 'reactstrap';
-import { Nav, NavItem, NavLink } from 'reactstrap';
-import { Jumbotron, Button } from 'reactstrap';
-import {
-	Card, CardImg, CardText, CardBody,
-	CardTitle, CardSubtitle
-} from 'reactstrap';
-import styled, { css } from 'styled-components';
+import { Nav, NavItem } from 'reactstrap';
+import { Jumbotron } from 'reactstrap';
+import styled from 'styled-components';
 
 
 const DisplayLinks = props => {
