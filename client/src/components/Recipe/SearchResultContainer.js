@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import ResultList from "./ResultList";
+import SavedList from "./SavedList";
 import API from "../../utils/API";
 import axios from 'axios'
 
@@ -16,6 +17,7 @@ class SearchResultContainer extends Component {
   state = {
     search: "",
     results: [],
+    saved: [],
     user: null
   };
 
@@ -65,6 +67,13 @@ class SearchResultContainer extends Component {
       user: this.state.user
     }
     axios.post("/api/recipes", recipeData)
+    this.updateSavedRecipes();
+  }
+
+  updateSavedRecipes = () => {
+    axios.get('./api/user').then(res => {
+      this.setState({saved: res.data.saved})
+    })
   }
 
   render() {
@@ -80,6 +89,8 @@ class SearchResultContainer extends Component {
           <ResultList 
           results={this.state.results}
           handleRecipeSave={this.handleRecipeSave}/>
+          <SavedList
+          saved={this.state.saved}/>
         </Jumbotron>
       </Container>
     );
