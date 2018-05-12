@@ -1,14 +1,6 @@
 import React from "react";
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { Container, Row, Col } from 'reactstrap';
-import { Nav, NavItem, NavLink } from 'reactstrap';
-import { Jumbotron, Button } from 'reactstrap';
-import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import {
-	Card, CardImg, CardText, CardBody,
-	CardTitle, CardSubtitle
-} from 'reactstrap';
-import styled, { css } from 'styled-components';
 
 const SearchForm = props => (
   <Form>

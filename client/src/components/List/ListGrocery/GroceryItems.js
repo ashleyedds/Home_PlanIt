@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FlipMove from "react-flip-move";
 
-class TodoItems extends Component {
+class GroceryItems extends Component {
     constructor(props) {
         super(props);
 
@@ -18,17 +18,17 @@ class TodoItems extends Component {
     }
 
     render() {
-        var todoEntries = this.props.entries;
-        var listItems = todoEntries.map(this.createTasks);
+        var groceryEntries = this.props.entries;
+        var groceryItems = groceryEntries.map(this.createTasks);
 
         return (
             <ul className="theList">
                 <FlipMove duration={250} easing="ease-out">
-                    {listItems}
+                    {groceryItems}
                 </FlipMove>
             </ul>
         );
     }
 };
 
-export default TodoItems;
+export default GroceryItems;
