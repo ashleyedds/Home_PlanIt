@@ -2,7 +2,7 @@ import React from 'react';
 import API from "../../utils/eventAPI";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, FormText } from 'reactstrap';
 import {Input} from "./Input";
-import "./Modal.css";
+import "./EventModal.css";
 
 
 class EventModal extends React.Component {
@@ -123,4 +123,4 @@ class EventModal extends React.Component {
     }
 }
 
-export default EventModal;
+export default EventModal
