@@ -5,6 +5,9 @@ import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import { Nav, NavIcon, NavText } from 'react-sidenav';
 
+import logo from "./logo.png";
+import "./Nav.css";
+
 import { withRR4 } from 'react-sidenav';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -44,6 +47,7 @@ const BaseContainer = props =>
 
 const Title = styled.div`
     padding: 55px;
+    padding-top: 20px;
     font-size: 25px;
 `;
 const NavLink = styled.a`
@@ -53,7 +57,7 @@ const NavLink = styled.a`
 		background-color: #2c3e50;
 		color: white;
 		border: 2px solid #2c3e50;
-`
+`;
 
 
 const SideNav = withRR4();
@@ -61,6 +65,7 @@ const SideNav = withRR4();
 export const BasicSideNav = () => (
     <Router>
         <SideNav highlightBgColor="#00bcd4" defaultSelected="events">
+            <img src={logo} />
             <Title> Home Planit </Title>
             <Nav id="events">
                 <NavIcon><Icon20 icon={ic_event_note} /></NavIcon>

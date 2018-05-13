@@ -12,8 +12,5 @@ export default {
     return axios.get(BASEURL + query + APIKEY);
   },
     
-  getEvents: function(){
-        return axios.get("/api/events");
-    }
 }
 
