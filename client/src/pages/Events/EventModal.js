@@ -1,6 +1,7 @@
 import React from 'react';
 import API from "../../utils/eventAPI";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, FormText } from 'reactstrap';
+import AddBtn from "../../components/AddBtn";
 import {Input} from "./Input";
 import "./EventModal.css";
 
@@ -37,6 +38,7 @@ class EventModal extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
+        console.log("click")
         API.saveEvent({
             title: this.state.title,
             start: this.state.startDate + " " + this.state.startTime,
@@ -114,7 +116,7 @@ class EventModal extends React.Component {
             </Form>
             </ModalBody>
             <ModalFooter>
-            <Button color="primary" onClick={this.handleFormSubmit}>Add it!</Button>{' '}
+            <AddBtn onClick={this.handleFormSubmit} />{' '}
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
             </ModalFooter>
         </Modal>
