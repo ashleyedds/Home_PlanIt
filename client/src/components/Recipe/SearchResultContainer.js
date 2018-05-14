@@ -3,8 +3,11 @@ import SearchForm from "./SearchForm";
 import ResultList from "./ResultList";
 import SavedList from "./SavedList";
 import API from "../../utils/API";
-import { Container, Jumbotron } from 'reactstrap';
+import { Container, Jumbotron, Card } from 'reactstrap';
 import axios from 'axios'
+import GroceryList from "../List/ListGrocery/GroceryList";
+import styled from 'styled-components';
+
 
 
 class SearchResultContainer extends Component {
@@ -69,8 +72,8 @@ class SearchResultContainer extends Component {
   updateSavedRecipes = () => {
     console.log("Saved Update ========" + this.state.user._id)
     axios.get('/api/recipes/' + this.state.user._id).then(res => {
-      this.setState({saved: res.data})
-      console.log(this.state.saved )
+      this.setState({ saved: res.data })
+      console.log(this.state.saved)
     })
   }
 
@@ -82,7 +85,20 @@ class SearchResultContainer extends Component {
 
   render() {
 
+    const Container = styled.div`
+      background: transparent;
+      width: 60em;
+      height: 100%;
+      left: 0%;
+      top: 10%;
+      padding: 1em;
+      margin-left: 17em;
+    `
+    
+  
+
     return (
+
       <Container>
         <Jumbotron>
           <SearchForm
@@ -90,12 +106,16 @@ class SearchResultContainer extends Component {
             handleFormSubmit={this.handleFormSubmit}
             handleInputChange={this.handleInputChange}
           />
-          <ResultList 
-          results={this.state.results}
-          handleRecipeSave={this.handleRecipeSave}/>
+          <ResultList
+            results={this.state.results}
+            handleRecipeSave={this.handleRecipeSave} />
+        </Jumbotron>
+        <Jumbotron>
+          <h1> Saved Recipes </h1>
+          <hr></hr>
           <SavedList
-          saved={this.state.saved}
-          deleteRecipe={this.deleteRecipe}/>
+            saved={this.state.saved}
+            deleteRecipe={this.deleteRecipe} />
         </Jumbotron>
       </Container>
     );

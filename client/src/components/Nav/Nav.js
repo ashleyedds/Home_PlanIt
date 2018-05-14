@@ -51,12 +51,10 @@ const Title = styled.div`
     font-size: 25px;
 `;
 const NavLink = styled.a`
-		border-radius: 3px;
 		padding: 0.5em 1em;
 		margin: 0 2em;
-		background-color: #2c3e50;
-		color: white;
-		border: 2px solid #2c3e50;
+        background: transparent;
+        color: white;
 `;
 
 
@@ -65,7 +63,7 @@ const SideNav = withRR4();
 export const BasicSideNav = () => (
     <Router>
         <SideNav highlightBgColor="#00bcd4" defaultSelected="events">
-            <img src={logo} />
+            <img class="logo" src={logo} />
             <Title> Home Planit </Title>
             <Nav id="events">
                 <NavIcon><Icon20 icon={ic_event_note} /></NavIcon>

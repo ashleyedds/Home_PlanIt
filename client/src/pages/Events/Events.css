@@ -1,5 +1,12 @@
 .container{
-    height: 99%;
-    left: 15%;
+    height: 100%;
+    width: 90%;
+    left: 0%;
     top: 10%;
+    background-color: #F5F5F5;
+    padding: 1em;
+    padding-bottom: 4em;
+    border-radius: 10px;
+    margin-left: 19em;
+    
 }

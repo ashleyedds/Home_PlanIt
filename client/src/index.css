@@ -1,16 +1,15 @@
 
 
 .App {
-  height: 500px;
+  height: 80vh;
   
 }
 
 body {
   padding: 0px;
-  margin-left: 12em;
-  background-color: #66CCFF;
+  max-width: 100%;
+  background-color: #00bcd4;
   font-family: sans-serif;
-  
 }
 #container {
   display: flex;
