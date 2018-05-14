@@ -46,13 +46,15 @@ class TodoContainer extends Component {
       margin-left: 19em;
     `
 
-    // const CardColumns = styled.div`
-    //   width: 20em;
-    // `
+    const CardColumns = styled.div`
+      width: 22em;
+      margin: 0;
+
+    `
 
     return (
 
-      <Container class="todoContainer">
+      <Container className="todoContainer">
         <div>
           <Jumbotron>
             <h1 className="display-3">List Hub</h1>
@@ -62,12 +64,13 @@ class TodoContainer extends Component {
             </p>
           </Jumbotron>
         </div>
-
-        <CardColumns>
-          {
-            this.state.lists.map(comp => comp)
-          }
-        </CardColumns>
+        <div>
+          <CardColumns>
+            {
+              this.state.lists.map(comp => comp)
+            }
+          </CardColumns>
+        </div>
       </Container>
     );
   }

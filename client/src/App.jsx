@@ -19,20 +19,23 @@ const DisplayLinks = props => {
 		color: white;
 		border: 2px solid #2c3e50;
 	`
+	const div = styled.div`
+		margin: 0;
+	`
 	if (props.loggedIn) {
 		return (
-			<Container>
+			<div className="navDiv">
 				<Nav>
 					<NavItem>
 						<NavLink href="#" onClick={props._logout}>Logout </NavLink>
 					</NavItem>
 				</Nav>
-			</Container>
+			</div>
 
 		)
 	} else {
 		return (
-			<Container>
+			<div className="navDiv">
 				<Nav>
 					<NavItem>
 						<NavLink href="/login">Login </NavLink>
@@ -41,7 +44,7 @@ const DisplayLinks = props => {
 						<NavLink href="/signup">Signup</NavLink>
 					</NavItem>
 				</Nav>
-			</Container>
+			</div>
 		)
 	}
 }
@@ -110,16 +113,23 @@ class App extends Component {
 
 	render() {
 		const Container = styled.div`
-			background-color: #eceeef;
+			background: transparent;
+			width: 60em;
+			height: 100%;
+			left: 0%;
+			top: 10%;
+			padding: 1em;
+			margin-left: 17em;
+		`
+		const Jumbotron = styled.div`
+			background: transparent;
 		`
 
 		return (
 			<Container>
 				<Jumbotron>
 					<Row>
-						<Col lg={{ offset: 4 }}>
-							<DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
-						</Col>
+						<DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
 					</Row>
 					<Row>
 						<Col>
