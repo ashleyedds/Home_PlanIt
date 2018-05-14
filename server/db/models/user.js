@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcryptjs')
 mongoose.promise = Promise
+const Event = require("../../../models/calendar");
 
 // Define userSchema
 const userSchema = new Schema({
@@ -10,7 +11,8 @@ const userSchema = new Schema({
 	local: {
 		username: { type: String, unique: false, required: false },
 		password: { type: String, unique: false, required: false }
-	}
+	},
+	events: [{ type: Schema.Types.ObjectId, ref: 'Event' }]
 	
 	// local: {
 	// 	email: { type: String, unique: true },
