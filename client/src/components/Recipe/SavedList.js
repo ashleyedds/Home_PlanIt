@@ -1,15 +1,8 @@
-import React, { Component } from "react";
-
-import { Container, Row, Col } from 'reactstrap';
-import { Nav, NavItem, NavLink } from 'reactstrap';
-import { Jumbotron, Button } from 'reactstrap';
-import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, CardGroup
-} from 'reactstrap';
-import styled, { css } from 'styled-components';
-import SaveBtn from './../SaveBtn';
+import React from "react";
+import { Row, Col } from 'reactstrap';
+import { Card, CardBody, CardTitle, Button } from 'reactstrap';
 import DeleteBtn from './../DeleteBtn';
+import './SavedList.css';
 
 
 
@@ -20,11 +13,11 @@ const SavedList = props => (
         <Row>
           {props.saved.map(save => (
             <Col sm="4">
-              <Card>
-                <CardBody>
-                  <CardTitle><h2>{save.title}</h2></CardTitle>
-                  <Button><a href={save.ingredients}>Go to Recipe</a></Button>
-                  <DeleteBtn onClick={() => props.deleteRecipe(save._id)}/>
+              <Card className="savedCard">
+                <CardBody className="savedCardBody">
+                  <CardTitle><h2 className="savedCardTitle">{save.title}</h2></CardTitle>
+                  <Button className="recipeBtn"><a href={save.ingredients}>Go to Recipe</a></Button>
+                  <DeleteBtn className="deleteBtn" onClick={() => props.deleteRecipe(save._id)}/>
                 </CardBody>
               </Card>
             </Col>

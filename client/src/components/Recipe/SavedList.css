@@ -1,0 +1,33 @@
+.savedCard {
+    margin-bottom: 2em;
+}
+
+.savedCardTitle {
+    font-size: 1.5em;
+}
+
+.savedCardBody {
+    height: 7em;
+    padding: 0em;
+}
+
+.savedCardText {
+    font-size: .75em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.deleteBtn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 3em;
+    margin-bottom: 0;
+}
+
+.recipeBtn {
+    position: absolute;
+    bottom: 0;
+    height: 3em;
+    margin-left: 0px;
+}
