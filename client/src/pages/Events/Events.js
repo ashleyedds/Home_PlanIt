@@ -1,15 +1,17 @@
 import React from 'react';
 import BigCalendar from 'react-big-calendar';
+import moment from "moment";
+
 import DeleteBtn from "../../components/DeleteBtn";
 import UpdateBtn from "../../components/UpdateBtn";
 import EventModal from "./EventModal";
-import ModalExample from "./EditEvent"
-import moment from "moment";
-import API from "../../utils/eventAPI";
-import "./Events.css";
 import { Container, Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, FormText } from 'reactstrap'
 import {Input} from "./Input";
+
+import API from "../../utils/eventAPI";
+import "./Events.css";
 import styled, { css } from 'styled-components';
+
 import axios from "axios";
 
 BigCalendar.momentLocalizer(moment);
@@ -128,25 +130,25 @@ class Basic extends React.Component {
         .then(this.toggle())
     };
 
-    deleteEvent = id => {
-        console.log(this.state.id)
-        API.deleteEvent(id)
-            .then(console.log("success"))
-            .catch(err => console.log(err));
-        };
+    // deleteEvent = id => {
+    //     console.log(this.state.id)
+    //     API.deleteEvent(id)
+    //         .then(console.log("success"))
+    //         .catch(err => console.log(err));
+    //     };
     
-    editEvent = (id) => {
-        var updatedEvent = {
-            title: this.state.title,
-            start: this.state.startDate + " " + this.state.startTime,
-            end: this.state.endDate + " " + this.state.endTime,
-            description: this.state.description
-        }
-        var userId = this.state.user._id    
-        API.updateEvent(id, updatedEvent, userId)
-        .then(console.log("success update"))
-        .catch(err => console.log(err))
-    }
+    // editEvent = (id) => {
+    //     var updatedEvent = {
+    //         title: this.state.title,
+    //         start: this.state.startDate + " " + this.state.startTime,
+    //         end: this.state.endDate + " " + this.state.endTime,
+    //         description: this.state.description
+    //     }
+    //     var userId = this.state.user._id    
+    //     API.updateEvent(id, updatedEvent, userId)
+    //     .then(console.log("success update"))
+    //     .catch(err => console.log(err))
+    // }
 
     render() {
 
@@ -177,7 +179,7 @@ class Basic extends React.Component {
                 <h3>{this.state.description}</h3>
                 <p>Starts at: {this.state.starts}</p>
                 <p>Ends at: {this.state.ends}</p>
-                <Modal isOpen={this.state.nestedModal} toggle={this.toggleNested} onClosed={this.state.closeAll ? this.toggle : undefined}>
+                {/* <Modal isOpen={this.state.nestedModal} toggle={this.toggleNested} onClosed={this.state.closeAll ? this.toggle : undefined}>
                 <ModalHeader>Edit event</ModalHeader>
                 <ModalBody>
                 <Form>
@@ -231,12 +233,12 @@ class Basic extends React.Component {
                 <UpdateBtn onClick={() => this.editEvent(this.state.id)} />{' '}
                     <Button color="secondary" onClick={this.toggleAll}>Nevermind</Button>
                 </ModalFooter>
-                </Modal>
+                </Modal> */}
             </ModalBody>
             <ModalFooter>
-            <Button color="success" onClick={this.toggle}>Okay</Button>{' '}
-            <Button color="info" onClick={this.toggleNested}>Edit</Button>{' '}
-            <DeleteBtn onClick={() => this.deleteEvent(this.state.id)} />
+            <Button className="confirmBtn" onClick={this.toggle}>Okay</Button>{' '}
+            {/* <Button color="info" onClick={this.toggleNested}>Edit</Button>{' '}
+            <DeleteBtn onClick={() => this.deleteEvent(this.state.id)} /> */}
             </ModalFooter>
         </Modal>
 

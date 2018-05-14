@@ -14,8 +14,12 @@ class EventModal extends React.Component {
         modal: false,
         title: "",
         // allDay: false,
+        startYear: "",
+        startMonth: "",
         startDate: "",
         startTime: "",
+        endYear: "",
+        endMonth: "",
         endDate: "",
         endTime: "",
         description: "",
@@ -57,8 +61,8 @@ class EventModal extends React.Component {
         console.log("click")
         API.saveEvent({
             title: this.state.title,
-            start: this.state.startDate + " " + this.state.startTime,
-            end: this.state.endDate + " " + this.state.endTime,
+            start: `${this.state.startYear}-${this.state.startMonth}-${this.state.startDate} ${this.state.startTime}`,
+            end: `${this.state.endYear}-${this.state.endMonth}-${this.state.endDate} ${this.state.endTime}`,
             description: this.state.description,
             user: this.state.user._id
         })
@@ -81,7 +85,7 @@ class EventModal extends React.Component {
     render() {
     return (
         <div>
-        <Button color="danger" onClick={this.toggle}>Add Event</Button>
+        <Button className="addBtn" onClick={this.toggle}>Add Event</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
             <ModalHeader toggle={this.toggle}>Add an Event</ModalHeader>
             <ModalBody>
@@ -95,41 +99,103 @@ class EventModal extends React.Component {
                     placeholder="What are you up to?" />
             </FormGroup> 
             <FormGroup>
-                <Label for="description">Event Description (optional)</Label>
+                <Label for="description">Event Description </Label>
                 <Input 
                     value={this.state.description}
                     onChange={this.handleInputChange}
                     name="description" 
                     placeholder="Tell me more." />
             </FormGroup> 
+            <h3>Event Start</h3>
+            <div className="row">
+            <div className="col-sm">
             <FormGroup>
-                <Label for="date">Start Date (YYYY-MM-DD)</Label>
-                <Input
+                <Label for="startYear">Year </Label>
+                    <Input 
+                        value={this.state.startYear}
+                        onChange={this.handleInputChange}
+                        name="startYear" 
+                        placeholder="YYYY" />
+            </FormGroup>
+            </div>
+            <div className="col-sm">
+            <FormGroup>
+            <Label for="startMonth">Month </Label>
+                <Input 
+                    value={this.state.startMonth}
+                    onChange={this.handleInputChange}
+                    name="startMonth" 
+                    placeholder="MM" />
+            </FormGroup>
+            </div>
+            </div>
+            <div className="row">
+            <div className="col-sm">
+            <FormGroup>
+            <Label for="startDate">Date </Label>
+                <Input 
                     value={this.state.startDate}
-                    onChange={this.handleInputChange} 
-                    name="startDate" />
+                    onChange={this.handleInputChange}
+                    name="startDate" 
+                    placeholder="DD" />
             </FormGroup>
+            </div>
+            <div className="col-sm">
             <FormGroup>
-                <Label for="startTime">Start Time</Label>
-                <Input
+            <Label for="startTime">Time </Label>
+                <Input 
                     value={this.state.startTime}
-                    onChange={this.handleInputChange} 
-                    name="startTime" />
+                    onChange={this.handleInputChange}
+                    name="startTime" 
+                    placeholder="HH:MM (military time)" />
             </FormGroup>
+            </div>
+            </div>
+            <h3>Event End</h3>
+            <div className="row">
+            <div className="col-sm">
             <FormGroup>
-                <Label for="date">End Date (YYYY-MM-DD)</Label>
+                <Label for="endYear">Year </Label>
+                    <Input 
+                        value={this.state.endYear}
+                        onChange={this.handleInputChange}
+                        name="endYear" 
+                        placeholder="YYYY" />
+            </FormGroup>
+            </div>
+            <div className="col-sm">
+            <FormGroup>
+            <Label for="endMonth">Month </Label>
+                <Input 
+                    value={this.state.endMonth}
+                    onChange={this.handleInputChange}
+                    name="endMonth" 
+                    placeholder="MM" />
+            </FormGroup>
+            </div>
+            </div>
+            <div className="row">
+            <div className="col-sm">
+            <FormGroup>
+            <Label for="endDate">Date </Label>
                 <Input 
                     value={this.state.endDate}
                     onChange={this.handleInputChange}
-                    name="endDate" />
+                    name="endDate" 
+                    placeholder="DD" />
             </FormGroup>
+            </div>
+            <div className="col-sm">
             <FormGroup>
-                <Label for="endTime">End Time</Label>
+            <Label for="endTime">Time </Label>
                 <Input 
                     value={this.state.endTime}
                     onChange={this.handleInputChange}
-                    name="endTime" />
+                    name="endTime" 
+                    placeholder="HH:MM (military time)" />
             </FormGroup>
+            </div>
+            </div>
             </Form>
             </ModalBody>
             <ModalFooter>

@@ -1,3 +1,9 @@
-.formcontrol {
-    width: 88%
+.modal-content{
+    width: 700px;
+}
+
+.addBtn {
+    background-color: #2fef4a;
+    color: #fff;
+    margin-top: 10px;
 }
