@@ -23,7 +23,6 @@ ReactDOM.render(
 					</Switch>
 				</div>
 			</Router>
-		
 	</div>,
 	document.getElementById('root')
 )

@@ -1,0 +1,32 @@
+.resultCard {
+    margin-bottom: 2em;
+}
+
+.resultCardTitle {
+    font-size: 1.5em;
+}
+
+.resultCardBody {
+    height: 20em;
+    padding: 0em;
+}
+
+.resultCardText {
+    font-size: .75em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.saveBtn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 3em;
+}
+
+.recipeBtn {
+    position: absolute;
+    bottom: 0;
+    height: 3em;
+    margin-left: 0px;
+}
