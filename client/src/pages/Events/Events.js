@@ -10,6 +10,7 @@ import "./Events.css";
 import { Container, Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, FormText } from 'reactstrap'
 import {Input} from "./Input";
 import styled, { css } from 'styled-components';
+import axios from "axios";
 
 BigCalendar.momentLocalizer(moment);
 
@@ -31,7 +32,8 @@ class Basic extends React.Component {
             endDate: "",
             endTime: "",
             ends: "",
-            id: ""
+            id: "",
+            user: null
         };
         this.toggle = this.toggle.bind(this);
         this.toggleNested = this.toggleNested.bind(this);
@@ -59,9 +61,18 @@ class Basic extends React.Component {
             }
 
     componentDidMount() {
-
-        this.searchDb();
-        
+        axios.get('/auth/user').then(response => {
+            console.log(response.data.user)
+            if (!!response.data.user) {
+              console.log('THERE IS A USER')
+              console.log(response.data.user.local.username)
+              this.setState({
+                user: response.data.user
+              })
+              console.log(this.state)
+              this.searchDb();
+            } 
+        })       
     }
 
     handleInputChange = event => {
@@ -84,7 +95,7 @@ class Basic extends React.Component {
     }
 
     searchDb = () => {
-        API.getEvents()
+        axios.get("/api/events/" + this.state.user._id)
         .then(res => {
             for(let i = 0; i < res.data.length; i++){
                 res.data[i].start = new Date(res.data[i].start)
@@ -95,22 +106,23 @@ class Basic extends React.Component {
         .catch(err => console.log(err));
     };
 
-    updateModal = (id) => {
-        API.getEvent(id)
+    updateModal = (user) => {
+        API.getEvent(user)
         .then(res => 
             {
-            var makeStart = res.data.start.split(" ");
-            var makeEnd = res.data.end.split(" ");
+            console.log(res.data)
+            var makeStart = res.data[0].start.split(" ");
+            var makeEnd = res.data[0].end.split(" ");
             this.setState({
-                title: res.data.title,
-                description: res.data.description,
-                starts: res.data.start,
-                ends: res.data.end,
+                title: res.data[0].title,
+                description: res.data[0].description,
+                starts: res.data[0].start,
+                ends: res.data[0].end,
                 startDate: makeStart[0],
                 startTime: makeStart[1],
                 endDate: makeEnd[0],
                 endTime: makeEnd[1],
-                id: res.data._id
+                id: res.data[0]._id
         })
     })
         .then(this.toggle())
@@ -123,14 +135,15 @@ class Basic extends React.Component {
             .catch(err => console.log(err));
         };
     
-    editEvent = (id, event) => {
+    editEvent = (id) => {
         var updatedEvent = {
             title: this.state.title,
             start: this.state.startDate + " " + this.state.startTime,
             end: this.state.endDate + " " + this.state.endTime,
             description: this.state.description
-        }    
-        API.updateEvent(id, updatedEvent)
+        }
+        var userId = this.state.user._id    
+        API.updateEvent(id, updatedEvent, userId)
         .then(console.log("success update"))
         .catch(err => console.log(err))
     }
@@ -147,7 +160,7 @@ class Basic extends React.Component {
         step={60}
         showMultiDayTimes
         defaultDate={new Date(new Date().setHours(new Date().getHours() - 3))}
-        onSelectEvent= {event => this.updateModal(event._id)}
+        onSelectEvent= {event => this.updateModal(event.user)}
         onSelectSlot={slotInfo =>
             alert(
                 `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +

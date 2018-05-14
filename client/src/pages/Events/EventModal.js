@@ -4,6 +4,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, La
 import AddBtn from "../../components/AddBtn";
 import {Input} from "./Input";
 import "./EventModal.css";
+import axios from "axios"
 
 
 class EventModal extends React.Component {
@@ -17,7 +18,8 @@ class EventModal extends React.Component {
         startTime: "",
         endDate: "",
         endTime: "",
-        description: ""
+        description: "",
+        user: null
     };
 
     this.toggle = this.toggle.bind(this);
@@ -36,6 +38,20 @@ class EventModal extends React.Component {
         });
     }
 
+    componentDidMount() {
+        axios.get('/auth/user').then(response => {
+            console.log(response.data.user)
+            if (!!response.data.user) {
+              console.log('THERE IS A USER')
+              console.log(response.data.user.local.username)
+              this.setState({
+                user: response.data.user
+              })
+              console.log(this.state)
+            } 
+        })       
+    }
+
     handleFormSubmit = event => {
         event.preventDefault();
         console.log("click")
@@ -43,7 +59,8 @@ class EventModal extends React.Component {
             title: this.state.title,
             start: this.state.startDate + " " + this.state.startTime,
             end: this.state.endDate + " " + this.state.endTime,
-            description: this.state.description
+            description: this.state.description,
+            user: this.state.user._id
         })
             .catch(err => console.log(err));
             
