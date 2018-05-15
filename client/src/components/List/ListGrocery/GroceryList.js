@@ -73,7 +73,10 @@ class GroceryList extends Component {
           this.loadList()  
     };
 
-    deleteItem(key) {
+    deleteItem(key, id) {
+    axios.delete('/api/lists/' + id)
+      .then(res => this.loadList())
+      .catch(err => console.log(err));
         var filteredItems = this.state.items.filter(function (item) {
             return (item.key !== key);
         });
