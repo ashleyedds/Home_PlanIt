@@ -8,13 +8,13 @@ class GenericItems extends Component {
         this.createTasks = this.createTasks.bind(this);
     }
 
-    delete(key) {
-        this.props.delete(key);
+    delete(key, id) {
+        this.props.delete(key, id);
     }
     createTasks(item) {
         
-        return <li onClick={() => this.delete(item.key)}
-            key={item.key}>{item.title}</li>
+        return <li onClick={() => this.delete(item.key, item._id)}
+            id={item._id} key={item.key}>{item.title}</li>
     }
 
     render() {
