@@ -11,8 +11,7 @@ const userSchema = new Schema({
 	local: {
 		username: { type: String, unique: false, required: false },
 		password: { type: String, unique: false, required: false }
-	},
-	events: [{ type: Schema.Types.ObjectId, ref: 'Event' }]
+	}
 	
 	// local: {
 	// 	email: { type: String, unique: true },

@@ -44,14 +44,12 @@ class EventModal extends React.Component {
 
     componentDidMount() {
         axios.get('/auth/user').then(response => {
-            console.log(response.data.user)
             if (!!response.data.user) {
               console.log('THERE IS A USER')
               console.log(response.data.user.local.username)
               this.setState({
                 user: response.data.user
               })
-              console.log(this.state)
             } 
         })       
     }
@@ -59,6 +57,7 @@ class EventModal extends React.Component {
     handleFormSubmit = event => {
         event.preventDefault();
         console.log("click")
+        console.log(this.state.user._id)
         API.saveEvent({
             title: this.state.title,
             start: `${this.state.startYear}-${this.state.startMonth}-${this.state.startDate} ${this.state.startTime}`,

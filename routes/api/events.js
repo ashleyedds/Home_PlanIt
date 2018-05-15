@@ -6,13 +6,13 @@ router.route("/")
     .get(calendarController.findAll)
     .post(calendarController.create);
 
-router.route("/:user")
+router.route("/user/:user")
     .get(calendarController.findByUser);
 
 router
     .route("/:id")
     .get(calendarController.findById)
-    .post(calendarController.update)
+    .put(calendarController.update)
     .delete(calendarController.remove);
 
 
