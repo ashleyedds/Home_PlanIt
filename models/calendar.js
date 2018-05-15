@@ -8,7 +8,7 @@ const calendarSchema = new Schema({
     start: { type: String, required: true },
     end: { type: String, required: true },
     description: { type: String, required: false},
-    user: { type: String, ref: "User"}
+    user: { type: String, require: true}
 });
 
 const Event = mongoose.model("Event", calendarSchema);

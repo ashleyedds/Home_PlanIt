@@ -30,7 +30,7 @@ module.exports = {
     },
     update: function(req, res) {
         db.Event
-        .findOneAndUpdate({ "_id": req.params.id }, 
+        .findByIdAndUpdate({ _id: req.params.id }, 
             {
                 "title": req.body.title,
                 "start": req.body.start,

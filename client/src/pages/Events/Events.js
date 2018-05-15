@@ -28,12 +28,16 @@ class Basic extends React.Component {
             events: [],
             title: "",
             description: "",
-            starts: "",
+            startYear: "",
+            startMonth: "",
+            startDay: "",
             startDate: "",
             startTime: "",
+            endYear: "",
+            endMonth: "",
+            endDay: "",
             endDate: "",
             endTime: "",
-            ends: "",
             id: "",
             user: null
         };
@@ -84,20 +88,8 @@ class Basic extends React.Component {
         });
     }
 
-    handleFormSubmit = event => {
-        event.preventDefault();
-        API.saveEvent({
-            title: this.state.title,
-            start: this.state.startDate + " " + this.state.startTime,
-            end: this.state.endDate + " " + this.state.endTime,
-            description: this.state.description
-        })
-            .catch(err => console.log(err));
-            
-    }
-
     searchDb = () => {
-        axios.get("/api/events/" + this.state.user._id)
+        axios.get("/api/events/user/" + this.state.user._id)
         .then(res => {
             for(let i = 0; i < res.data.length; i++){
                 res.data[i].start = new Date(res.data[i].start)
@@ -108,47 +100,52 @@ class Basic extends React.Component {
         .catch(err => console.log(err));
     };
 
-    updateModal = (user) => {
-        API.getEvent(user)
+    updateModal = (id) => {
+        API.getEvent(id)
         .then(res => 
             {
             console.log(res.data)
-            var makeStart = res.data[0].start.split(" ");
-            var makeEnd = res.data[0].end.split(" ");
+            var makeStart = res.data.start.split(" ");
+            var makeEnd = res.data.end.split(" ");
+            var makeStartDate = makeStart[0].split("-");
+            var makeEndDate = makeEnd[0].split("-");
+            console.log(makeStartDate)
             this.setState({
-                title: res.data[0].title,
-                description: res.data[0].description,
-                starts: res.data[0].start,
-                ends: res.data[0].end,
-                startDate: makeStart[0],
+                title: res.data.title,
+                description: res.data.description,
+                startYear: makeStartDate[0],
+                startMonth: makeStartDate[1],
+                startDay: makeStartDate[2],
+                endYear: makeEndDate[0],
+                endMonth: makeEndDate[1],
+                endDay: makeEndDate[2],
                 startTime: makeStart[1],
-                endDate: makeEnd[0],
                 endTime: makeEnd[1],
-                id: res.data[0]._id
+                id: res.data._id
         })
     })
         .then(this.toggle())
     };
 
-    // deleteEvent = id => {
-    //     console.log(this.state.id)
-    //     API.deleteEvent(id)
-    //         .then(console.log("success"))
-    //         .catch(err => console.log(err));
-    //     };
+    deleteEvent = id => {
+        console.log(this.state.id)
+        API.deleteEvent(id)
+            .then(console.log("success"))
+            .catch(err => console.log(err));
+        };
     
-    // editEvent = (id) => {
-    //     var updatedEvent = {
-    //         title: this.state.title,
-    //         start: this.state.startDate + " " + this.state.startTime,
-    //         end: this.state.endDate + " " + this.state.endTime,
-    //         description: this.state.description
-    //     }
-    //     var userId = this.state.user._id    
-    //     API.updateEvent(id, updatedEvent, userId)
-    //     .then(console.log("success update"))
-    //     .catch(err => console.log(err))
-    // }
+    editEvent = (id) => {
+        var updatedEvent = {
+            title: this.state.title,
+            start: `${this.state.startYear}-${this.state.startMonth}-${this.state.startDay} ${this.state.startTime}`,
+            end: `${this.state.endYear}-${this.state.endMonth}-${this.state.endDay} ${this.state.endTime}`,
+            description: this.state.description
+        }   
+        console.log(id, updatedEvent)
+        API.updateEvent(id, updatedEvent)
+        .then(console.log("success update"))
+        .catch(err => console.log(err))
+    }
 
     render() {
 
@@ -162,7 +159,7 @@ class Basic extends React.Component {
         step={60}
         showMultiDayTimes
         defaultDate={new Date(new Date().setHours(new Date().getHours() - 3))}
-        onSelectEvent= {event => this.updateModal(event.user)}
+        onSelectEvent= {event => this.updateModal(event._id)}
         onSelectSlot={slotInfo =>
             alert(
                 `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
@@ -177,68 +174,130 @@ class Basic extends React.Component {
             <ModalHeader toggle={this.toggle}>{this.state.title}</ModalHeader>
             <ModalBody>
                 <h3>{this.state.description}</h3>
-                <p>Starts at: {this.state.starts}</p>
-                <p>Ends at: {this.state.ends}</p>
-                {/* <Modal isOpen={this.state.nestedModal} toggle={this.toggleNested} onClosed={this.state.closeAll ? this.toggle : undefined}>
+                <p>Starts at: {`${this.state.startYear}-${this.state.startMonth}-${this.state.startDay} ${this.state.startTime}`}</p>
+                <p>Ends at: {`${this.state.endYear}-${this.state.endMonth}-${this.state.endDay} ${this.state.endTime}`}</p>
+                <Modal isOpen={this.state.nestedModal} toggle={this.toggleNested} onClosed={this.state.closeAll ? this.toggle : undefined}>
                 <ModalHeader>Edit event</ModalHeader>
                 <ModalBody>
                 <Form>
                     <FormGroup>
-                        <Label for="title">Event Title</Label>
-                        <Input 
-                            value={this.state.title}
-                            onChange={this.handleInputChange}
-                            name="title"
-                            placeholder="What are you up to?" />
+                    <Label for="title">Event Title</Label>
+                    <Input 
+                        value={this.state.title}
+                        onChange={this.handleInputChange}
+                        name="title"
+                        placeholder="What are you up to?" />
                     </FormGroup> 
                     <FormGroup>
-                        <Label for="description">Event Description (optional)</Label>
+                        <Label for="description">Event Description </Label>
                         <Input 
                             value={this.state.description}
                             onChange={this.handleInputChange}
                             name="description" 
                             placeholder="Tell me more." />
                     </FormGroup> 
+                <h3>Event Start</h3> 
+                <div className="row">
+                <div className="col-sm">
                     <FormGroup>
-                        <Label for="date">Start Date (YYYY-MM-DD)</Label>
-                        <Input
-                            value={this.state.startDate}
-                            onChange={this.handleInputChange} 
-                            name="startDate" />
+                        <Label for="startYear">Year </Label>
+                            <Input 
+                                value={this.state.startYear}
+                                onChange={this.handleInputChange}
+                                name="startYear" 
+                                placeholder="YYYY" />
                     </FormGroup>
+                    </div>
+                    <div className="col-sm">
                     <FormGroup>
-                        <Label for="startTime">Start Time</Label>
-                        <Input
+                    <Label for="startMonth">Month </Label>
+                        <Input 
+                            value={this.state.startMonth}
+                            onChange={this.handleInputChange}
+                            name="startMonth" 
+                            placeholder="MM" />
+                    </FormGroup>
+                    </div>
+                    </div>
+                    <div className="row">
+                    <div className="col-sm">
+                    <FormGroup>
+                    <Label for="startDate">Date </Label>
+                        <Input 
+                            value={this.state.startDay}
+                            onChange={this.handleInputChange}
+                            name="startDay" 
+                            placeholder="DD" />
+                    </FormGroup>
+                    </div>
+                    <div className="col-sm">
+                    <FormGroup>
+                    <Label for="startTime">Time </Label>
+                        <Input 
                             value={this.state.startTime}
-                            onChange={this.handleInputChange} 
-                            name="startTime" />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="date">End Date (YYYY-MM-DD)</Label>
-                        <Input 
-                            value={this.state.endDate}
                             onChange={this.handleInputChange}
-                            name="endDate" />
+                            name="startTime" 
+                            placeholder="HH:MM (military time)" />
                     </FormGroup>
-                    <FormGroup>
-                        <Label for="endTime">End Time</Label>
-                        <Input 
-                            value={this.state.endTime}
-                            onChange={this.handleInputChange}
-                            name="endTime" />
-                    </FormGroup>
+                    </div>
+                    </div>
+                    <h3>Event End</h3>
+            <div className="row">
+            <div className="col-sm">
+            <FormGroup>
+                <Label for="endYear">Year </Label>
+                    <Input 
+                        value={this.state.endYear}
+                        onChange={this.handleInputChange}
+                        name="endYear" 
+                        placeholder="YYYY" />
+            </FormGroup>
+            </div>
+            <div className="col-sm">
+            <FormGroup>
+                <Label for="endMonth">Month </Label>
+                    <Input 
+                        value={this.state.endMonth}
+                        onChange={this.handleInputChange}
+                        name="endMonth" 
+                        placeholder="MM" />
+                </FormGroup>
+                </div>
+                </div>
+                <div className="row">
+                <div className="col-sm">
+                <FormGroup>
+                <Label for="endDate">Date </Label>
+                    <Input 
+                        value={this.state.endDay}
+                        onChange={this.handleInputChange}
+                        name="endDay" 
+                        placeholder="DD" />
+                </FormGroup>
+                </div>
+                <div className="col-sm">
+                <FormGroup>
+                <Label for="endTime">Time </Label>
+                    <Input 
+                        value={this.state.endTime}
+                        onChange={this.handleInputChange}
+                        name="endTime" 
+                        placeholder="HH:MM (military time)" />
+                </FormGroup>
+                </div>
+                </div>                    
             </Form>
                 </ModalBody>
                 <ModalFooter>
                 <UpdateBtn onClick={() => this.editEvent(this.state.id)} />{' '}
                     <Button color="secondary" onClick={this.toggleAll}>Nevermind</Button>
                 </ModalFooter>
-                </Modal> */}
+                </Modal>
             </ModalBody>
             <ModalFooter>
             <Button className="confirmBtn" onClick={this.toggle}>Okay</Button>{' '}
-            {/* <Button color="info" onClick={this.toggleNested}>Edit</Button>{' '}
-            <DeleteBtn onClick={() => this.deleteEvent(this.state.id)} /> */}
+            <Button color="info" onClick={this.toggleNested}>Edit</Button>{' '}
+            <DeleteBtn onClick={() => this.deleteEvent(this.state.id)} />
             </ModalFooter>
         </Modal>
 
