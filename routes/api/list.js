@@ -10,10 +10,10 @@ router.route("/:user")
     .get(listController.findByUser);
     // .post(recipeController.create);
 
-// router
-//     .route("/:id")
-//     .get(recipeController.findById)
-//     .delete(recipeController.remove);
+router
+    .route("/:id")
+    .get(listController.findById)
+    .delete(listController.remove);
 
 
 module.exports = router;
