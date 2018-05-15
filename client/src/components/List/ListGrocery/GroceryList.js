@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import GroceryItems from "./GroceryItems";
 import "./GroceryList.css";
 import API from "../../../utils/listAPI";
+import axios from "axios";
 import styled from 'styled-components';
 import { Card,  CardTitle } from 'reactstrap';
 
@@ -9,7 +10,8 @@ class GroceryList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: []
+            items: [],
+            user: null
         };
         this.addItem = this.addItem.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
@@ -36,26 +38,39 @@ class GroceryList extends Component {
     }
 
     componentDidMount() {
-        this.loadList();
+        axios.get("/auth/user").then(response => {
+            console.log(response.data.user)
+            if (!!response.data.user) {
+              console.log('THERE IS A USER')
+              console.log(response.data.user.local.username)
+              this.setState({
+                user: response.data.user
+              })
+              console.log(this.state)
+              this.loadList();
+            //   this.updateSavedList();
+            }
+      
+          })
     }
     
     loadList() {
-        API.getList()
-            .then(res => this.setState({items: res.data}))
-            
-            .catch(err => console.log(err));
+        console.log("Saved Update ========" + this.state.user._id)
+    axios.get('/api/lists/' + this.state.user._id).then(res => {
+      this.setState({ items: res.data })
+      console.log(this.state.items)
+    })
     };
 
     handleFormSubmit(item) {
-          API.saveList({
+          const listItem = {
             title: item.title,
             key: item.key,
-            MemberId: 1
+            user: this.state.user
             
-          })
-            .then(res => console.log("something"))
-            .catch(err => console.log(err));
-        console.log(this.state.items)
+          }
+          axios.post("/api/lists", listItem)
+          this.loadList()  
     };
 
     deleteItem(key) {

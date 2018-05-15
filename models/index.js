@@ -1,4 +1,5 @@
 module.exports = {
     Event: require("./calendar"),
-    Recipe: require("./recipe")
+    Recipe: require("./recipe"),
+    List: require("./list")
 }

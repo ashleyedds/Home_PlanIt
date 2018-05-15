@@ -36,7 +36,6 @@ class GenericList extends Component {
     }
 
     componentDidMount() {
-        this.loadList();
     }
     
     loadList() {

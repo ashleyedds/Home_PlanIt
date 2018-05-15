@@ -36,7 +36,6 @@ class TodoList extends Component {
     }
 
     componentDidMount() {
-        this.loadList();
     }
     
     loadList() {
