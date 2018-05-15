@@ -47,6 +47,7 @@ const DisplayLinks = props => {
 			</div>
 		)
 	}
+	
 }
 
 class App extends Component {
@@ -68,6 +69,7 @@ class App extends Component {
 					loggedIn: true,
 					user: response.data.user
 				})
+				console.log(this.state.user)
 			} else {
 				this.setState({
 					loggedIn: false,
@@ -144,6 +146,7 @@ class App extends Component {
 							/>
 							<Route exact path="/signup" component={SignupForm} />
 						</Col>
+						<hello/>
 					</Row>
 				</Jumbotron>
 			</Container>
