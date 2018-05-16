@@ -116,7 +116,7 @@ class App extends Component {
 	render() {
 		const Container = styled.div`
 			background: transparent;
-			width: 60em;
+			width: 50%;
 			height: 100%;
 			left: 0%;
 			top: 10%;

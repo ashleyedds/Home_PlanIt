@@ -1,13 +1,12 @@
-.container{
+.calendarContainer{
     height: 100%;
-    width: 90%;
-    left: 25%;
-    top: 10%;
+    width: 100%;
     background-color: #F5F5F5;
     padding: 1em;
     padding-bottom: 4em;
     border-radius: 10px;
-    margin-left: 19em;
+    margin-left: 25%;
+    border: 1px solid red;
     
 }
 
