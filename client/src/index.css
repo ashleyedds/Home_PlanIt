@@ -11,7 +11,3 @@ body {
   background-color: #00bcd4;
   font-family: sans-serif;
 }
-#container {
-  display: flex;
-  justify-content: center;
-}

@@ -53,40 +53,13 @@ const Title = styled.div`
     font-size: 25px;
 `;
 const NavLink = styled.a`
+        width: 10em;
 		padding: 0.5em 1em;
-		margin: 0 2em;
         background: transparent;
         color: white;
 `;
 
-
 const SideNav = withRR4();
-
-// export const BasicSideNav = () => (
-//     <Router>
-//         <SideNav highlightBgColor="#00bcd4" defaultSelected="events">
-//             <img class="logo" src={logo} />
-//             <Title> Home Planit </Title>
-//             <Hello name={this.state.user}/>
-//             <Nav id="events">
-//                 <NavIcon><Icon20 icon={ic_event_note} /></NavIcon>
-//                 <NavText><NavLink href="/events">Events</NavLink></NavText>
-//             </Nav>
-//             <Nav id="lists">
-//                 <NavIcon><Icon20 icon={ic_format_list_bulleted} /></NavIcon>
-//                 <NavText><NavLink href="/lists">Lists</NavLink></NavText>
-//             </Nav>
-//             <Nav id="recipes">
-//                 <NavIcon><Icon20 icon={spoonKnife} /></NavIcon>
-//                 <NavText><NavLink href="/recipes">Recipes</NavLink></NavText>
-//             </Nav>
-//             <Nav id="members">
-//                 <NavIcon><Icon20 icon={ic_people} /></NavIcon>
-//                 <NavText><NavLink href="/members">Members</NavLink></NavText>
-//             </Nav>
-//         </SideNav>
-//     </Router>
-// );
 
 class X extends React.Component {
     state = {
@@ -95,47 +68,47 @@ class X extends React.Component {
 
     componentDidMount() {
         axios.get('/auth/user').then(response => {
-          console.log(response.data.user)
-          if (!!response.data.user) {
-            console.log('THERE IS A USER')
-            console.log(response.data.user.local.username)
-            this.setState({
-              user: response.data.user.local.username
-            })
-            console.log(this.state)
-          }
-    
+            console.log(response.data.user)
+            if (!!response.data.user) {
+                console.log('THERE IS A USER')
+                console.log(response.data.user.local.username)
+                this.setState({
+                    user: response.data.user.local.username
+                })
+                console.log(this.state)
+            }
+
         })
-      }
+    }
 
     render() {
-        
+
         return (
             <div style={{ display: 'flex' }}>
                 <BaseContainer style={{ background: '#2c3e50', color: '#FFF' }}>
-                <Router>
-        <SideNav highlightBgColor="#00bcd4" defaultSelected="events">
-            <img class="logo" src={logo} />
-            <Title> Home Planit </Title>
-            <Hello user={this.state.user}/>
-            <Nav id="events">
-                <NavIcon><Icon20 icon={ic_event_note} /></NavIcon>
-                <NavText><NavLink href="/events">Events</NavLink></NavText>
-            </Nav>
-            <Nav id="lists">
-                <NavIcon><Icon20 icon={ic_format_list_bulleted} /></NavIcon>
-                <NavText><NavLink href="/lists">Lists</NavLink></NavText>
-            </Nav>
-            <Nav id="recipes">
-                <NavIcon><Icon20 icon={spoonKnife} /></NavIcon>
-                <NavText><NavLink href="/recipes">Recipes</NavLink></NavText>
-            </Nav>
-            <Nav id="members">
-                <NavIcon><Icon20 icon={ic_people} /></NavIcon>
-                <NavText><NavLink href="/members">Members</NavLink></NavText>
-            </Nav>
-        </SideNav>
-    </Router>
+                    <Router>
+                        <SideNav highlightBgColor="#00bcd4">
+                            <img class="logo" src={logo} />
+                            <Title> Home Planit </Title>
+                            <Hello user={this.state.user} />
+                            <Nav id="events">
+                                <NavIcon><Icon20 icon={ic_event_note} /></NavIcon>
+                                <NavText><NavLink href="/events">Events</NavLink></NavText>
+                            </Nav>
+                            <Nav id="lists">
+                                <NavIcon><Icon20 icon={ic_format_list_bulleted} /></NavIcon>
+                                <NavText><NavLink href="/lists">Lists</NavLink></NavText>
+                            </Nav>
+                            <Nav id="recipes">
+                                <NavIcon><Icon20 icon={spoonKnife} /></NavIcon>
+                                <NavText><NavLink href="/recipes">Recipes</NavLink></NavText>
+                            </Nav>
+                            <Nav id="members">
+                                <NavIcon><Icon20 icon={ic_people} /></NavIcon>
+                                <NavText><NavLink href="/members">Members</NavLink></NavText>
+                            </Nav>
+                        </SideNav>
+                    </Router>
                 </BaseContainer>
             </div>
         );
