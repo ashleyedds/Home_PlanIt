@@ -60,13 +60,17 @@ class SearchResultContainer extends Component {
   };
 
   handleRecipeSave = (url, title) => {
-    const recipeData = {
-      title: title,
-      ingredients: url,
-      user: this.state.user
+    if (this.state.user === null) {
+      alert("You must be logged in to save recipes")
+    } else {
+      const recipeData = {
+        title: title,
+        ingredients: url,
+        user: this.state.user
+      }
+      axios.post("/api/recipes", recipeData)
+      this.updateSavedRecipes();
     }
-    axios.post("/api/recipes", recipeData)
-    this.updateSavedRecipes();
   }
 
   updateSavedRecipes = () => {
@@ -94,8 +98,8 @@ class SearchResultContainer extends Component {
       padding: 1em;
       margin-left: 17em;
     `
-    
-  
+
+
 
     return (
 
@@ -113,6 +117,7 @@ class SearchResultContainer extends Component {
         <Jumbotron>
           <h1> Saved Recipes </h1>
           <hr></hr>
+          
           <SavedList
             saved={this.state.saved}
             deleteRecipe={this.deleteRecipe} />
