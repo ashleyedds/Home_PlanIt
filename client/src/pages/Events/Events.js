@@ -5,12 +5,11 @@ import moment from "moment";
 import DeleteBtn from "../../components/DeleteBtn";
 import UpdateBtn from "../../components/UpdateBtn";
 import EventModal from "./EventModal";
-import { Container, Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, FormText } from 'reactstrap'
+import { Container, Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label } from 'reactstrap'
 import { Input } from "./Input";
 
 import API from "../../utils/eventAPI";
 import "./Events.css";
-import styled, { css } from 'styled-components';
 
 import axios from "axios";
 
@@ -153,7 +152,7 @@ class Basic extends React.Component {
             <Container className="calendarContainer">
                 <BigCalendar
                     events={this.state.events}
-                    popup events={this.state.events}
+                    popupevents={this.state.events}
                     views={allViews}
                     step={60}
                     showMultiDayTimes

@@ -3,12 +3,9 @@ import SearchForm from "./SearchForm";
 import ResultList from "./ResultList";
 import SavedList from "./SavedList";
 import API from "../../utils/API";
-import { Container, Jumbotron, Card } from 'reactstrap';
+import { Container, Jumbotron } from 'reactstrap';
 import axios from 'axios'
-import GroceryList from "../List/ListGrocery/GroceryList";
-import styled from 'styled-components';
-
-
+import './SearchResultContainer.css';
 
 class SearchResultContainer extends Component {
   state = {
@@ -22,17 +19,16 @@ class SearchResultContainer extends Component {
   componentDidMount() {
     this.searchRecipes("chicken");
     axios.get('/auth/user').then(response => {
-      console.log(response.data.user)
+      console.log(response.data.user);
       if (!!response.data.user) {
-        console.log('THERE IS A USER')
-        console.log(response.data.user.local.username)
+        console.log('THERE IS A USER');
+        console.log(response.data.user.local.username);
         this.setState({
           user: response.data.user
-        })
-        console.log(this.state)
+        });
+        console.log(this.state);
         this.updateSavedRecipes();
       }
-
     })
   }
 
@@ -41,15 +37,13 @@ class SearchResultContainer extends Component {
       .then(res => this.setState({ results: res.data.hits }))
       // .then(res => console.log(res.data))
       .catch(err => console.log(err));
-    console.log(this.state.results)
-    console.log(this.state.user)
+    console.log(this.state.results);
+    console.log(this.state.user);
   };
 
   handleInputChange = event => {
-    const name = event.target.name;
-    const value = event.target.value;
     this.setState({
-      [name]: value
+      search: event.target.value
     });
   };
 
@@ -74,11 +68,11 @@ class SearchResultContainer extends Component {
   }
 
   updateSavedRecipes = () => {
-    console.log("Saved Update ========" + this.state.user._id)
+    console.log("Saved Update ========" + this.state.user._id);
     axios.get('/api/recipes/' + this.state.user._id).then(res => {
-      this.setState({ saved: res.data })
-      console.log(this.state.saved)
-    })
+      this.setState({ saved: res.data });
+      console.log(this.state.saved);
+    });
   }
 
   deleteRecipe = id => {
@@ -88,24 +82,10 @@ class SearchResultContainer extends Component {
   };
 
   render() {
-
-    const Container = styled.div`
-      background: transparent;
-      width: 60em;
-      height: 100%;
-      left: 0%;
-      top: 10%;
-      padding: 1em;
-      margin-left: 17em;
-    `
-
-
-
     return (
-
-      <Container>
+      <Container className="search-result-container">
         <Jumbotron>
-          <SearchForm
+        <SearchForm
             search={this.state.search}
             handleFormSubmit={this.handleFormSubmit}
             handleInputChange={this.handleInputChange}
@@ -116,8 +96,7 @@ class SearchResultContainer extends Component {
         </Jumbotron>
         <Jumbotron>
           <h1> Saved Recipes </h1>
-          <hr></hr>
-          
+          <hr />
           <SavedList
             saved={this.state.saved}
             deleteRecipe={this.deleteRecipe} />

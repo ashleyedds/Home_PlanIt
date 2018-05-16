@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import './App.css'
 import LoginForm from './components/Login/LoginForm'
 import SignupForm from './components/SignupForm'
-import { Container, Row, Col } from 'reactstrap';
-import { Nav, NavItem } from 'reactstrap';
-import { Jumbotron } from 'reactstrap';
+import { Row, Col, Nav, NavItem } from 'reactstrap';
 import styled from 'styled-components';
-
 
 const DisplayLinks = props => {
 	const NavLink = styled.a`
@@ -62,7 +59,8 @@ class App extends Component {
 		}
 		this._logout = this._logout.bind(this)
 		this._login = this._login.bind(this)
-	}
+  }
+  
 	componentDidMount() {
 		axios.get('/auth/user').then(response => {
 			console.log(response.data)
@@ -113,8 +111,6 @@ class App extends Component {
 				}
 			})
 	}
-
-
 
 	render() {
 		const Container = styled.div`

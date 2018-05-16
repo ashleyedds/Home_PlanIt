@@ -1,6 +1,6 @@
 import React from 'react';
 import API from "../../utils/eventAPI";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, FormText } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label } from 'reactstrap';
 import AddBtn from "../../components/AddBtn";
 import {Input} from "./Input";
 import "./EventModal.css";
