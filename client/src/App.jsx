@@ -121,7 +121,7 @@ class App extends Component {
 			left: 0%;
 			top: 10%;
 			padding: 1em;
-			margin-left: 17em;
+			margin-left: 0em;
 		`
 		const Jumbotron = styled.div`
 			background: transparent;

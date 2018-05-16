@@ -1,7 +1,6 @@
 import React from "react";
 import { Row, Col, Button, Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import SaveBtn from './../SaveBtn';
-import styled from 'styled-components';
 import './ResultList.css';
 
 const ResultList = props => (
