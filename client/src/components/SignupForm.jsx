@@ -73,7 +73,7 @@ class SignupForm extends Component {
 					</Col>
 				</Row>
 				<Row>
-					<Col lg={{ size: 1, offset: 5}}>
+					<Col lg={{ size: 4, offset: 4}}>
 						<button onClick={this.handleSubmit}>Create Account</button>
 					</Col>
 				</Row>

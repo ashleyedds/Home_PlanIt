@@ -18,9 +18,12 @@ const DisplayLinks = props => {
 		background-color: #2c3e50;
 		color: white;
 		border: 2px solid #2c3e50;
+		horizontal-align: center;
 	`
 	const div = styled.div`
-		margin: 0;
+		margin: auto;
+		display: block;
+		
 	`
 	if (props.loggedIn) {
 		return (
@@ -121,10 +124,13 @@ class App extends Component {
 			left: 0%;
 			top: 10%;
 			padding: 1em;
-			margin-left: 0em;
+			margin-left: 20em;
+			border: 1px solid red;
 		`
 		const Jumbotron = styled.div`
 			background: transparent;
+			border: 1px solid green;
+			
 		`
 
 		return (
