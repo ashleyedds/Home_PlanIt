@@ -49,8 +49,11 @@ class TodoContainer extends Component {
     const CardColumns = styled.div`
       width: 25em;
       margin: 2em;
+      
 
     `
+
+    
 
     return (
 
