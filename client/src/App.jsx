@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Route } from 'react-router-dom'
 import './App.css'
+import logo from "./components/Nav/logo.png";
 import LoginForm from './components/Login/LoginForm'
 import SignupForm from './components/SignupForm'
 import { Row, Col, Nav, NavItem } from 'reactstrap';
@@ -27,7 +28,7 @@ const DisplayLinks = props => {
 			<div className="navDiv">
 				<Nav>
 					<NavItem>
-						<NavLink href="#" onClick={props._logout}>Logout </NavLink>
+						<NavLink className="logout" href="#" onClick={props._logout}>Logout </NavLink>
 					</NavItem>
 				</Nav>
 			</div>
@@ -38,10 +39,10 @@ const DisplayLinks = props => {
 			<div className="navDiv">
 				<Nav>
 					<NavItem>
-						<NavLink href="/login">Login </NavLink>
+						<NavLink className="login" href="/login">Login </NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink href="/signup">Signup</NavLink>
+						<NavLink className="signup" href="/signup">Signup</NavLink>
 					</NavItem>
 				</Nav>
 			</div>
@@ -123,23 +124,28 @@ class App extends Component {
 			top: 10%;
 			padding: 1em;
 			margin-left: 20em;
-			border: 1px solid red;
 		`
 		const Jumbotron = styled.div`
 			background: transparent;
-			border: 1px solid green;
 			
 		`
 
 		return (
-			<Container>
+			<Container className="mainContainer">
 				<Jumbotron>
-					<Row>
+				<img className="logoMain" src={logo} alt=""/>
+				<h4 className="welcomeText">Welcome to HomePlanit!</h4>
+				<h7 className="welcomeText">All your home organization needs, under one roof</h7>
+					<Row className="buttonRow">
 						<DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
 					</Row>
-					<Row>
+					<Row className="formRow">
 						<Col>
-							<Route exact path="/" render={null} />
+							<Route exact path="/" render={() =>
+									<LoginForm
+										_login={this._login}
+									/>}
+									 />
 							<Route
 								exact
 								path="/login"
@@ -148,9 +154,10 @@ class App extends Component {
 										_login={this._login}
 									/>}
 							/>
+						</Col>
+						<Col>
 							<Route exact path="/signup" component={SignupForm} />
 						</Col>
-						<hello/>
 					</Row>
 				</Jumbotron>
 			</Container>
