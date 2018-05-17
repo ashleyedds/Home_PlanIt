@@ -91,6 +91,7 @@ class App extends Component {
 					user: null
 				})
 			}
+			window.location.reload()
 		})
 	}
 
@@ -109,6 +110,7 @@ class App extends Component {
 						user: response.data.user
 					})
 				}
+			window.location.reload()
 			})
 	}
 
