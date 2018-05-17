@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import ResultList from "./ResultList";
 import SavedList from "./SavedList";
+import GroceryList from "../List/ListGrocery/GroceryList";
 import API from "../../utils/API";
-import { Container, Jumbotron } from 'reactstrap';
+import { Container, Jumbotron, Row, Col } from 'reactstrap';
 import axios from 'axios'
 import './SearchResultContainer.css';
 
@@ -84,16 +85,25 @@ class SearchResultContainer extends Component {
   render() {
     return (
       <Container className="search-result-container">
-        <Jumbotron>
-        <SearchForm
-            search={this.state.search}
-            handleFormSubmit={this.handleFormSubmit}
-            handleInputChange={this.handleInputChange}
-          />
-          <ResultList
-            results={this.state.results}
-            handleRecipeSave={this.handleRecipeSave} />
-        </Jumbotron>
+        <Row>
+          <Col xs="9">
+            <Jumbotron>
+              <SearchForm
+                search={this.state.search}
+                handleFormSubmit={this.handleFormSubmit}
+                handleInputChange={this.handleInputChange}
+              />
+              <ResultList
+                results={this.state.results}
+                handleRecipeSave={this.handleRecipeSave} />
+            </Jumbotron>
+          </Col>
+          <Col xs="3">
+            <GroceryList />
+          </Col>
+        </Row>
+        <Row>
+        <Col xs="9">
         <Jumbotron>
           <h1> Saved Recipes </h1>
           <hr />
@@ -101,6 +111,8 @@ class SearchResultContainer extends Component {
             saved={this.state.saved}
             deleteRecipe={this.deleteRecipe} />
         </Jumbotron>
+        </Col>
+        </Row>
       </Container>
     );
   }
