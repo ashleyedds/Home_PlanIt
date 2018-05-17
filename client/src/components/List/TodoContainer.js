@@ -47,8 +47,8 @@ class TodoContainer extends Component {
     `
 
     const CardColumns = styled.div`
-      width: 22em;
-      margin: 0;
+      width: 25em;
+      margin: 2em;
 
     `
 
@@ -64,13 +64,14 @@ class TodoContainer extends Component {
             </p>
           </Jumbotron>
         </div>
-        <div>
+  
           <CardColumns>
             {
+              
               this.state.lists.map(comp => comp)
             }
           </CardColumns>
-        </div>
+        
       </Container>
     );
   }
