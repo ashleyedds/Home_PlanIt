@@ -1,0 +1,26 @@
+.logoMain {
+    min-width: 15vw;
+    padding-left: 35%
+}
+
+.buttonRow {
+    padding-left: 35%;
+    padding-top: 2%;
+}
+
+.formRow {
+    padding-left: 7%;
+}
+
+h4.welcomeText{
+    padding-left: 35%;
+    padding-top: 2%;
+}
+
+h7.welcomeText {
+    padding-left: 28%;
+}
+
+.welcomeText {
+    color: #fff;
+}
