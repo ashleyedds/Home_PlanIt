@@ -56,7 +56,8 @@ const SideNav = withRR4();
 
 class X extends React.Component {
     state = {
-        user: null
+        user: null,
+        guest: "Please sign in"
     }
 
     componentDidMount() {
@@ -66,12 +67,19 @@ class X extends React.Component {
                 console.log('THERE IS A USER')
                 console.log(response.data.user.local.username)
                 this.setState({
-                    user: response.data.user.local.username
+                    user: "Welcome " + response.data.user.local.username + "!"
                 })
                 console.log(this.state)
             }
 
         })
+    }
+
+    checkLogIn(){
+        if(this.state.user !== null) {
+            return this.state.user
+        }
+        return  this.state.guest
     }
 
     render() {
@@ -82,7 +90,7 @@ class X extends React.Component {
                         <SideNav highlightBgColor="#00bcd4">
                             <img className="logo" src={logo} alt=""/>
                             <Title> Home Planit </Title>
-                            <Hello user={this.state.user} />
+                            <Hello user={this.checkLogIn()} />
                             <Nav id="events">
                                 <NavIcon><Icon20 icon={ic_event_note} /></NavIcon>
                                 <NavText><NavLink href="/events">Events</NavLink></NavText>
