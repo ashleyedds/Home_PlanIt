@@ -54,13 +54,14 @@ class SearchResultContainer extends Component {
     this.searchRecipes(this.state.search);
   };
 
-  handleRecipeSave = (url, title) => {
+  handleRecipeSave = (url, title,image) => {
     if (this.state.user === null) {
       alert("You must be logged in to save recipes")
     } else {
       const recipeData = {
         title: title,
         ingredients: url,
+        img: image,
         user: this.state.user
       }
       axios.post("/api/recipes", recipeData)

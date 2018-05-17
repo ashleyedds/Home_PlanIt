@@ -14,7 +14,7 @@ const ResultList = props => (
               <CardTitle><span className="resultCardTitle"> {result.recipe.label}</span></CardTitle>
               <CardText>{result.recipe.ingredients.map((ingredient,ind) => (<span className="resultCardText" key={['ingredient', ind].join('_')}>{ingredient.text}</span>))}</CardText>
               <Button className="recipeBtn"><a href={result.recipe.url}>Go to Recipe</a></Button>
-              <SaveBtn className="saveBtn" onClick={() => props.handleRecipeSave(result.recipe.url, result.recipe.label)} />
+              <SaveBtn className="saveBtn" onClick={() => props.handleRecipeSave(result.recipe.url, result.recipe.label, result.recipe.image)} />
             </CardBody>
           </Card>
         </Col>
