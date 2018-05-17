@@ -105,7 +105,7 @@ class X extends React.Component {
                             </Nav>
                             <Nav id="members">
                                 <NavIcon><Icon20 icon={ic_people} /></NavIcon>
-                                <NavText><NavLink href="/logout">Logout</NavLink></NavText>
+                                <NavText><NavLink href="/logout">Login/Logout</NavLink></NavText>
                             </Nav>
                         </SideNav>
                     </Router>
