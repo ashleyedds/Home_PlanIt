@@ -141,10 +141,7 @@ class App extends Component {
 					</Row>
 					<Row className="formRow">
 						<Col>
-							<Route exact path="/" render={() =>
-									<LoginForm
-										_login={this._login}
-									/>}
+							<Route exact path="/" render={null}
 									 />
 							<Route
 								exact

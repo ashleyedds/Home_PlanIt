@@ -1,11 +1,18 @@
+.mainContainer {
+    width: 60em!important;
+}
 .logoMain {
     min-width: 15vw;
-    padding-left: 35%
+    padding-left: 37%
 }
 
 .buttonRow {
-    padding-left: 35%;
+    padding-left: 37%;
     padding-top: 2%;
+}
+
+.gxEHeY{
+    margin: 0 6em!important;
 }
 
 .formRow {
@@ -13,12 +20,12 @@
 }
 
 h4.welcomeText{
-    padding-left: 35%;
+    padding-left: 37%;
     padding-top: 2%;
 }
 
 h7.welcomeText {
-    padding-left: 28%;
+    padding-left: 32%;
 }
 
 .welcomeText {
