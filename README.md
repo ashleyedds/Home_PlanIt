@@ -1,5 +1,4 @@
-![HomePlanIt Logo](/client/src/components/Nav/logo.png)
-Format: ![align](right)
+<img src="/client/src/components/Nav/logo.png" alt="HomePlanIt Logo" align="right" height="60">
 
 # HomePlanIt
 
