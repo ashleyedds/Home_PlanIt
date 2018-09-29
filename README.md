@@ -1,3 +1,6 @@
+![HomePlanIt Logo](/client/src/components/Nav/logo.png)
+Format: ![align](right)
+
 # HomePlanIt
 
 ### HomePlanIt - All your home organization needs, under one roof!
