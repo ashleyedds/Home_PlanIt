@@ -1,4 +1,4 @@
-<img src="/client/src/components/Nav/logo.png" alt="HomePlanIt Logo" align="right" height="60">
+<img src="/client/src/components/Nav/logo.png" alt="HomePlanIt Logo" align="right" height="100">
 
 # HomePlanIt
 
