@@ -13,7 +13,7 @@ Manage your calendar, to-do lists, chores, find and save recipes.
 
 ### To run HomePlanIt locally -
 
-1. `git clone` [git@github.com/ashleyedds/Home_PlanIt.git] to your computer.
+1. `git clone` [https://github.com/ashleyedds/Home_PlanIt] to your computer.
 
 1. Navigate to the `client` folder and run `yarn install` in terminal/bash.
 
